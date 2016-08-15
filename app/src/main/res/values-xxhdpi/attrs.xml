@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="toolbar">
+        <attr name="title_toolbar" format="string" />
+        <attr name="icon_left_toolbar" format="integer" />
+        <attr name="icon_right_toolbar" format="integer" />
+        <attr name="background_toolbar" format="color" />
+        <attr name="background_img_toolbar" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="PagerSlidingTabStrip">
+        <attr name="pstsTextColor" format="color" />
+        <attr name="pstsIndicatorColor" format="color" />
+        <attr name="pstsUnderlineColor" format="color" />
+        <attr name="pstsDividerColor" format="color" />
+        <attr name="pstsIndicatorHeight" format="dimension" />
+        <attr name="pstsUnderlineHeight" format="dimension" />
+        <attr name="pstsDividerPadding" format="dimension" />
+        <attr name="pstsTabPaddingLeftRight" format="dimension" />
+        <attr name="pstsScrollOffset" format="dimension" />
+        <attr name="pstsTabBackground" format="reference" />
+        <attr name="pstsShouldExpand" format="boolean" />
+        <attr name="pstsTextAllCaps" format="boolean" />
+        <attr name="pstsTriangleIndicator" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="bezier_progress">
+        <attr name="progress_height" format="dimension" />
+        <attr name="progress_stroke" format="dimension" />
+    </declare-styleable>
+</resources>

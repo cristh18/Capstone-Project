@@ -12,6 +12,9 @@
             android:name=".ui.activities.MainActivity"
             android:screenOrientation="sensorPortrait" />
         <activity
+            android:name=".ui.activities.AccountActivity"
+            android:screenOrientation="sensorPortrait" />
+        <activity
             android:name=".ui.activities.SplashActivity"
             android:screenOrientation="sensorPortrait">
             <intent-filter>

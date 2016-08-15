@@ -8,6 +8,14 @@ import com.udacitynanodegree.cristhian.capstoneproject.R;
 
 public abstract class FragmentView extends Fragment {
 
+    private int enter = R.anim.slide_in_right;
+
+    private int exit = R.anim.slide_out_right;
+
+    private int popEnter = R.anim.slide_in_right;
+
+    private int popExit = R.anim.slide_out_right;
+
     private boolean addOnStack = false;
 
     private boolean animate = false;
@@ -58,6 +66,22 @@ public abstract class FragmentView extends Fragment {
         fragmentListener.onClose(this);
     }
 
+    public int getEnter() {
+        return enter;
+    }
+
+    public int getExit() {
+        return exit;
+    }
+
+    public int getPopEnter() {
+        return popEnter;
+    }
+
+    public int getPopExit() {
+        return popExit;
+    }
+
     public boolean isAddOnStack() {
         return addOnStack;
     }
@@ -68,6 +92,26 @@ public abstract class FragmentView extends Fragment {
 
     public int getContainer() {
         return container;
+    }
+
+    public FragmentView setEnter(int enter) {
+        this.enter = enter;
+        return this;
+    }
+
+    public FragmentView setExit(int exit) {
+        this.exit = exit;
+        return this;
+    }
+
+    public FragmentView setPopEnter(int popEnter) {
+        this.popEnter = popEnter;
+        return this;
+    }
+
+    public FragmentView setPopExit(int popExit) {
+        this.popExit = popExit;
+        return this;
     }
 
     public FragmentView addOnStack() {

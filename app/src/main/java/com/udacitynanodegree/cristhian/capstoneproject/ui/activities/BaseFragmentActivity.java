@@ -1,26 +1,21 @@
 package com.udacitynanodegree.cristhian.capstoneproject.ui.activities;
 
 import android.app.ProgressDialog;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.WindowManager;
 
+import com.udacitynanodegree.cristhian.capstoneproject.R;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.DialogFragmentView;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.FragmentListener;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.FragmentView;
 
 import java.util.ArrayList;
 
-
 public class BaseFragmentActivity extends FragmentActivity implements FragmentListener, FragmentManager.OnBackStackChangedListener {
-
-
-    public static final int ACTION_REQUEST_GALLERY = 101;
-
-    public static final int CAPTURE_IMAGE_REQUEST_CODE = 102;
 
     private ArrayList<FragmentView> pendingForClose = new ArrayList<>();
 
@@ -28,7 +23,7 @@ public class BaseFragmentActivity extends FragmentActivity implements FragmentLi
 
     private ArrayList<DialogFragmentView> pendingDialogs = new ArrayList<>();
 
-    private FragmentManager fragmentManager;
+    protected FragmentManager fragmentManager;
 
     private ProgressDialog progressDialog;
 
@@ -37,7 +32,12 @@ public class BaseFragmentActivity extends FragmentActivity implements FragmentLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initFonts();
+
+        if (getResources().getBoolean(R.bool.isTablet)) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
 
         setBackgroundActivity();
 
@@ -48,11 +48,6 @@ public class BaseFragmentActivity extends FragmentActivity implements FragmentLi
         progressDialog.setIndeterminate(true);
 
         progressDialog.setCancelable(false);
-
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SECURE);
-    }
-
-    private void initFonts() {
     }
 
     protected void setBackgroundActivity() {
@@ -91,6 +86,9 @@ public class BaseFragmentActivity extends FragmentActivity implements FragmentLi
             if (fragmentView.isAddOnStack()) {
                 ft.addToBackStack(fragmentView.getName());
             }
+            if (fragmentView.isAnimate()) {
+                ft.setCustomAnimations(fragmentView.getEnter(), fragmentView.getExit(), fragmentView.getPopEnter(), fragmentView.getPopExit());
+            }
 
             ft.replace(fragmentView.getContainer(), fragmentView, fragmentView.getName());
 
@@ -111,6 +109,10 @@ public class BaseFragmentActivity extends FragmentActivity implements FragmentLi
                 fragmentView.setListener(this);
 
                 FragmentTransaction ft = fragmentManager.beginTransaction();
+
+                if (fragmentManager.getBackStackEntryCount() >= 0) {
+                    ft.setCustomAnimations(fragmentView.getEnter(), fragmentView.getExit(), fragmentView.getPopEnter(), fragmentView.getPopExit());
+                }
 
                 ft.add(fragmentView.getContainer(), fragmentView, fragmentView.getName());
 
@@ -134,6 +136,15 @@ public class BaseFragmentActivity extends FragmentActivity implements FragmentLi
             replaceFragment(fragmentView);
         } else {
             addFragment(fragmentView);
+        }
+    }
+
+    public void showFragmentDialog(DialogFragmentView fragment) {
+        if (!isPause()) {
+            FragmentManager fm = getSupportFragmentManager();
+            fragment.show(fm, fragment.getName());
+        } else {
+            pendingDialogs.add(fragment);
         }
     }
 
@@ -238,8 +249,11 @@ public class BaseFragmentActivity extends FragmentActivity implements FragmentLi
 
     private void checkPendingView() {
 
-        pendingForOpen.clear();
+        for (FragmentView fragmentView : pendingForOpen) {
+            addFragment(fragmentView.setEnter(0).setPopEnter(0));
+        }
 
+        pendingForOpen.clear();
         pendingForOpen = new ArrayList<>();
 
         for (FragmentView fragmentView : pendingForClose) {
@@ -247,18 +261,16 @@ public class BaseFragmentActivity extends FragmentActivity implements FragmentLi
         }
 
         pendingForClose.clear();
-
         pendingForClose = new ArrayList<>();
 
+        for (DialogFragmentView fragmentView : pendingDialogs) {
+            showFragmentDialog(fragmentView);
+        }
+
+        pendingDialogs.clear();
+        pendingDialogs = new ArrayList<>();
+
     }
 
-    public void showFragmentDialog(DialogFragmentView fragment) {
-        if (!isPause()) {
-            FragmentManager fm = getSupportFragmentManager();
-            fragment.show(fm, fragment.getName());
-        } else {
-            pendingDialogs.add(fragment);
-        }
-    }
 }
 

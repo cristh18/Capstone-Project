@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets.HeaderMainView
+        android:id="@+id/headerMainView_register_vehicle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_header_main"
+        app:icon_left_toolbar="@drawable/ic_white_back"
+        app:title_toolbar="@string/copy.register_vehicle_toolbar_title" />
+
+    <Spinner
+        android:id="@+id/editText_vehicle_make"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/headerMainView_register_vehicle"
+        android:layout_margin="@dimen/spacing_xlarge"
+        android:gravity="center" />
+
+    <Spinner
+        android:id="@+id/editText_vehicle_model"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText_vehicle_make"
+        android:layout_marginEnd="@dimen/spacing_xlarge"
+        android:layout_marginLeft="@dimen/spacing_xlarge"
+        android:layout_marginRight="@dimen/spacing_xlarge"
+        android:layout_marginStart="@dimen/spacing_xlarge"
+        android:gravity="center" />
+
+    <Spinner
+        android:id="@+id/editText_vehicle_year"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText_vehicle_model"
+        android:layout_marginEnd="@dimen/spacing_xlarge"
+        android:layout_marginLeft="@dimen/spacing_xlarge"
+        android:layout_marginRight="@dimen/spacing_xlarge"
+        android:layout_marginStart="@dimen/spacing_xlarge"
+        android:layout_marginTop="@dimen/spacing_xlarge"
+        android:gravity="center" />
+
+    <Spinner
+        android:id="@+id/editText_vehicle_transmission"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText_vehicle_year"
+        android:layout_marginEnd="@dimen/spacing_xlarge"
+        android:layout_marginLeft="@dimen/spacing_xlarge"
+        android:layout_marginRight="@dimen/spacing_xlarge"
+        android:layout_marginStart="@dimen/spacing_xlarge"
+        android:layout_marginTop="@dimen/spacing_xlarge"
+        android:gravity="center" />
+
+    <EditText
+        android:id="@+id/editText_vehicle_engine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText_vehicle_transmission"
+        android:layout_marginEnd="@dimen/spacing_xlarge"
+        android:layout_marginLeft="@dimen/spacing_xlarge"
+        android:layout_marginRight="@dimen/spacing_xlarge"
+        android:layout_marginStart="@dimen/spacing_xlarge"
+        android:layout_marginTop="@dimen/spacing_xlarge"
+        android:gravity="center"
+        android:hint="@string/copy.register_hint_engine" />
+
+    <Button
+        android:id="@+id/button_register_finish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/spacing_large"
+        android:layout_marginEnd="@dimen/spacing_xlarge"
+        android:layout_marginLeft="@dimen/spacing_xlarge"
+        android:layout_marginRight="@dimen/spacing_xlarge"
+        android:layout_marginStart="@dimen/spacing_xlarge"
+        android:text="@string/copy.register_finish" />
+
+</RelativeLayout>
