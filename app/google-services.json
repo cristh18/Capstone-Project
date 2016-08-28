@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "245789307159",
+    "firebase_url": "https://ironhide-cf1dc.firebaseio.com",
+    "project_id": "ironhide-cf1dc",
+    "storage_bucket": "ironhide-cf1dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245789307159:android:f62357f837d332fa",
+        "android_client_info": {
+          "package_name": "com.udacitynanodegree.cristhian.capstoneproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "245789307159-g1qs6r5vmn9v6kghdg9qj2rbkvqsci64.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3Sc3TN-KyX9MU9pBcjJLQsk9n85vuiBQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

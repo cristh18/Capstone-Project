@@ -2,9 +2,14 @@ package com.udacitynanodegree.cristhian.capstoneproject.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.udacitynanodegree.cristhian.capstoneproject.R;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.LoginListener;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.RecoverPasswordListener;
@@ -21,14 +26,20 @@ public class AccountActivity extends BaseFragmentActivity implements
         RegisterVehicleListener,
         RecoverPasswordListener {
 
-    FrameLayout frameLayout;
+    private FrameLayout frameLayout;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
+        init();
         initViews();
         addFragment(new LoginFragment());
+    }
+
+    private void init() {
+        firebaseAuth = FirebaseAuth.getInstance();
     }
 
     private void initViews() {
@@ -41,6 +52,23 @@ public class AccountActivity extends BaseFragmentActivity implements
         mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(mainIntent);
         finish();
+    }
+
+    private void registerUser() {
+        firebaseAuth.createUserWithEmailAndPassword("user email here", "user password here")
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        //checking if success
+                        if (task.isSuccessful()) {
+                            //display some message here
+                        } else {
+                            //display some message here
+                        }
+
+                    }
+                });
     }
 
     @Override
