@@ -1,11 +1,16 @@
 package com.udacitynanodegree.cristhian.capstoneproject.ui.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.androidadvance.topsnackbar.TSnackbar;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -18,7 +23,7 @@ import com.udacitynanodegree.cristhian.capstoneproject.interfaces.RegisterVehicl
 import com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.account.LoginFragment;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.account.RecoverPasswordFragment;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.account.RegisterUserFragment;
-import com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.account.RegisterVehicleFragment;
+import com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets.ColoredSnackbar;
 
 public class AccountActivity extends BaseFragmentActivity implements
         LoginListener,
@@ -26,8 +31,10 @@ public class AccountActivity extends BaseFragmentActivity implements
         RegisterVehicleListener,
         RecoverPasswordListener {
 
+    private FrameLayout containerAccount;
     private FrameLayout frameLayout;
     private FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +50,9 @@ public class AccountActivity extends BaseFragmentActivity implements
     }
 
     private void initViews() {
+        containerAccount = (FrameLayout) findViewById(R.id.container_account);
         frameLayout = (FrameLayout) findViewById(R.id.container);
+        progressDialog = new ProgressDialog(this);
     }
 
     private void goToMainActivity() {
@@ -54,26 +63,47 @@ public class AccountActivity extends BaseFragmentActivity implements
         finish();
     }
 
-    private void registerUser() {
-        firebaseAuth.createUserWithEmailAndPassword("user email here", "user password here")
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-
-                        //checking if success
-                        if (task.isSuccessful()) {
-                            //display some message here
-                        } else {
-                            //display some message here
+    private void registerUser(String userEmail, String userPassword) {
+        if (!TextUtils.isEmpty(userEmail) && !TextUtils.isEmpty(userPassword)) {
+            progressDialog.setMessage("Registering Please Wait...");
+            progressDialog.show();
+            firebaseAuth.createUserWithEmailAndPassword(userEmail, userPassword)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                showSnackBar(containerAccount, getString(R.string.copy_register_user_successful), Snackbar.LENGTH_SHORT, false);
+                                goToMainActivity();
+                            } else {
+                                showSnackBar(containerAccount, getString(R.string.copy_user_registration_failed), Snackbar.LENGTH_SHORT, true);
+                            }
+                            progressDialog.dismiss();
                         }
-
-                    }
-                });
+                    });
+        } else {
+            showSnackBar(containerAccount, getString(R.string.copy_error_register_user), Snackbar.LENGTH_SHORT, true);
+        }
     }
 
     @Override
-    public void onSignIn() {
-        goToMainActivity();
+    public void onSignIn(String userEmail, String userPassword) {
+        if (!TextUtils.isEmpty(userEmail) && !TextUtils.isEmpty(userPassword)) {
+            progressDialog.setMessage("Registering Please Wait...");
+            progressDialog.show();
+            firebaseAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        goToMainActivity();
+                    } else {
+                        showSnackBar(containerAccount, getString(R.string.copy_sign_in_failed), Snackbar.LENGTH_SHORT, true);
+                    }
+                    progressDialog.dismiss();
+                }
+            });
+        } else {
+            showSnackBar(containerAccount, getString(R.string.copy_error_register_user), Snackbar.LENGTH_SHORT, true);
+        }
     }
 
     @Override
@@ -97,8 +127,9 @@ public class AccountActivity extends BaseFragmentActivity implements
     }
 
     @Override
-    public void onContinueRegister() {
-        replaceFragment(new RegisterVehicleFragment());
+    public void onRegisterUser(String userEmail, String userPassword) {
+        //        replaceFragment(new RegisterVehicleFragment());
+        registerUser(userEmail, userPassword);
     }
 
     @Override
@@ -120,5 +151,14 @@ public class AccountActivity extends BaseFragmentActivity implements
     public void onRecoverPassword() {
         Toast.makeText(this, "PASSWORD RECOVERED", Toast.LENGTH_SHORT).show();
         replaceFragment(new LoginFragment());
+    }
+
+    private void showSnackBar(View view, String message, int duration, boolean isError) {
+        TSnackbar snackbar = TSnackbar.make(view, message, duration);
+        if (isError) {
+            ColoredSnackbar.error(snackbar).show();
+        } else {
+            ColoredSnackbar.success(snackbar).show();
+        }
     }
 }

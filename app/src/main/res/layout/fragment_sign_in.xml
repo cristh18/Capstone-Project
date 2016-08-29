@@ -18,7 +18,7 @@
         tools:src="@drawable/img_splash_logo" />
 
     <EditText
-        android:id="@+id/editText_user_address"
+        android:id="@+id/editText_sign_in_user_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView_icon_sign_in"
@@ -32,10 +32,10 @@
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/editText_user_password"
+        android:id="@+id/editText_sign_in_user_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText_user_address"
+        android:layout_below="@+id/editText_sign_in_user_email"
         android:layout_marginEnd="@dimen/spacing_xlarge"
         android:layout_marginLeft="@dimen/spacing_xlarge"
         android:layout_marginRight="@dimen/spacing_xlarge"
@@ -50,7 +50,7 @@
         android:id="@+id/textView_forgot_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText_user_password"
+        android:layout_below="@+id/editText_sign_in_user_password"
         android:layout_marginTop="@dimen/spacing_medium"
         android:gravity="center"
         android:text="@string/copy.login_forgot_password" />

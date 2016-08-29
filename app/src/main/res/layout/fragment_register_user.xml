@@ -25,34 +25,10 @@
         tools:src="@drawable/img_splash_logo" />
 
     <EditText
-        android:id="@+id/editText_user_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView_user_picture"
-        android:layout_marginEnd="@dimen/spacing_xlarge"
-        android:layout_marginLeft="@dimen/spacing_xlarge"
-        android:layout_marginRight="@dimen/spacing_xlarge"
-        android:layout_marginStart="@dimen/spacing_xlarge"
-        android:gravity="center"
-        android:hint="@string/copy.register_hint_name" />
-
-    <EditText
-        android:id="@+id/editText_user_lastName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText_user_name"
-        android:layout_marginEnd="@dimen/spacing_xlarge"
-        android:layout_marginLeft="@dimen/spacing_xlarge"
-        android:layout_marginRight="@dimen/spacing_xlarge"
-        android:layout_marginStart="@dimen/spacing_xlarge"
-        android:gravity="center"
-        android:hint="@string/copy.register_hint_last_name" />
-
-    <EditText
         android:id="@+id/editText_user_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText_user_lastName"
+        android:layout_below="@+id/imageView_user_picture"
         android:layout_marginEnd="@dimen/spacing_xlarge"
         android:layout_marginLeft="@dimen/spacing_xlarge"
         android:layout_marginRight="@dimen/spacing_xlarge"
@@ -74,26 +50,16 @@
         android:hint="@string/copy.register_hint_password"
         android:inputType="textPassword" />
 
-    <EditText
-        android:id="@+id/editText_user_birthday"
-        android:layout_below="@+id/editText_user_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/spacing_xlarge"
-        android:layout_marginLeft="@dimen/spacing_xlarge"
-        android:layout_marginRight="@dimen/spacing_xlarge"
-        android:layout_marginStart="@dimen/spacing_xlarge" />
-
     <Button
-        android:id="@+id/button_continue_register"
-        android:layout_alignParentBottom="true"
+        android:id="@+id/button_register_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/spacing_large"
         android:layout_marginEnd="@dimen/spacing_xlarge"
         android:layout_marginLeft="@dimen/spacing_xlarge"
         android:layout_marginRight="@dimen/spacing_xlarge"
         android:layout_marginStart="@dimen/spacing_xlarge"
-        android:layout_marginBottom="@dimen/spacing_large"
-        android:text="@string/copy.register_continue" />
+        android:text="@string/copy.register" />
 
 </RelativeLayout>

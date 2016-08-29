@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.udacitynanodegree.cristhian.capstoneproject.R;
@@ -16,11 +17,13 @@ import com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets.HeaderMa
 
 public class RegisterUserFragment extends FragmentView implements
         HeaderMainView.HeaderMainListener,
-        View.OnClickListener{
+        View.OnClickListener {
 
     private HeaderMainView headerMainView;
     private RegisterUserListener registerUserListener;
     private Button buttonContinue;
+    private EditText editTextUserEmail;
+    private EditText editTextUserPassword;
 
     @Nullable
     @Override
@@ -37,7 +40,9 @@ public class RegisterUserFragment extends FragmentView implements
 
     private void initViews(View view) {
         headerMainView = (HeaderMainView) view.findViewById(R.id.headerMainView_register_user);
-        buttonContinue = (Button) view.findViewById(R.id.button_continue_register);
+        editTextUserEmail = (EditText) view.findViewById(R.id.editText_user_email);
+        editTextUserPassword = (EditText) view.findViewById(R.id.editText_user_password);
+        buttonContinue = (Button) view.findViewById(R.id.button_register_user);
     }
 
     private void initListeners() {
@@ -74,9 +79,9 @@ public class RegisterUserFragment extends FragmentView implements
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.button_continue_register:
-                registerUserListener.onContinueRegister();
+        switch (view.getId()) {
+            case R.id.button_register_user:
+                registerUserListener.onRegisterUser(editTextUserEmail.getText().toString(), editTextUserPassword.getText().toString());
                 break;
         }
     }

@@ -44,8 +44,8 @@ public class LoginFragment extends FragmentView implements View.OnClickListener 
         buttonGoogleSignIn = (Button) view.findViewById(R.id.button_google_sign_in);
         textViewForgotPassword = (TextView) view.findViewById(R.id.textView_forgot_password);
         textViewSignUp = (TextView) view.findViewById(R.id.textView_sign_up);
-        editTextUserEmail = (EditText) view.findViewById(R.id.editText_user_email);
-        editTextUserPassword = (EditText) view.findViewById(R.id.editText_user_password);
+        editTextUserEmail = (EditText) view.findViewById(R.id.editText_sign_in_user_email);
+        editTextUserPassword = (EditText) view.findViewById(R.id.editText_sign_in_user_password);
     }
 
     private void initListeners() {
@@ -75,7 +75,7 @@ public class LoginFragment extends FragmentView implements View.OnClickListener 
         switch (view.getId()) {
             case R.id.button_sign_in:
                 Toast.makeText(getContext(), "SIGN IN", Toast.LENGTH_SHORT).show();
-                loginListener.onSignIn();
+                loginListener.onSignIn(editTextUserEmail.getText().toString(), editTextUserPassword.getText().toString());
                 break;
             case R.id.textView_forgot_password:
                 Toast.makeText(getContext(), "FORGOT PASSWORD", Toast.LENGTH_SHORT).show();
