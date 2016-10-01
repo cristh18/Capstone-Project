@@ -10,4 +10,5 @@
     <color name="gray_light_transparent_second">#B4F5F5F5</color>
     <color name="gray_light_third">#BEBEBE</color>
     <color name="green_primary">#009F57</color>
+    <color name="gray_light">#F5F5F5</color>
 </resources>

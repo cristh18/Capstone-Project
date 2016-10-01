@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.activities.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets.HeaderMainView
-        android:id="@+id/headerMainView_my_vehicles"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_header_main"
-        app:title_toolbar="Vehicles" />
+        android:layout_height="match_parent"
+        tools:context=".ui.activities.MainActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView_my_vehicles"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/headerMainView_my_vehicles" />
+        <com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets.HeaderMainView
+            android:id="@+id/headerMainView_my_vehicles"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_header_main"
+            app:title_toolbar="Vehicles" />
 
-    <TextView
-        android:id="@+id/textView_hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/recyclerView_my_vehicles"
-        android:layout_centerHorizontal="true"
-        android:text="Hello World!" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView_my_vehicles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/headerMainView_my_vehicles" />
 
-    <Button
-        android:id="@+id/button_sign_out"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView_hello_world"
-        android:layout_centerHorizontal="true"
-        android:text="Sign out" />
-</RelativeLayout>
+        <TextView
+            android:id="@+id/textView_hello_world"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/recyclerView_my_vehicles"
+            android:layout_centerHorizontal="true"
+            android:text="Hello World!" />
+
+        <Button
+            android:id="@+id/button_sign_out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_hello_world"
+            android:layout_centerHorizontal="true"
+            android:text="Sign out" />
+    </RelativeLayout>
+</layout>

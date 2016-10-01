@@ -1,16 +1,39 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:soundEffectsEnabled">false</item>
+        <item name="colorControlNormal">@color/gray_light_third</item>
+        <item name="colorControlActivated">@color/red</item>
     </style>
 
-    <style name="style_text_h1">
+    <style name="Theme.Transparent" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:soundEffectsEnabled">false</item>
+    </style>
+
+    <style name="Theme.Opaque" parent="Theme.Transparent">
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowBackground">@color/gray_light</item>
+    </style>
+
+    <style name="DialogFragments" parent="@style/Theme.Transparent">
+        <item name="android:windowAnimationStyle">@style/MyAnimation.Window</item>
+    </style>
+
+    <style name="MyAnimation.Window" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/dialog_fragments_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_fragments_out</item>
+    </style>
+
+    <style name="style_white_text_h1">
         <item name="android:textSize">@dimen/font_xxlarge</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
 </resources>

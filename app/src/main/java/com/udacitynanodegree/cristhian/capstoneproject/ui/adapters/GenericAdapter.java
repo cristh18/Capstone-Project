@@ -8,16 +8,29 @@ import com.udacitynanodegree.cristhian.capstoneproject.interfaces.GenericItem;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.GenericItemView;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.factories.GenericAdapterFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class GenericAdapter<T extends GenericItem> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class GenericAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    protected List<T> items;
+    private final String defaultCategory = "Other";
+
+    protected List<GenericItem> items;
 
     protected GenericAdapterFactory factory;
 
+    private String other;
+
     public GenericAdapter(GenericAdapterFactory factory) {
         this.factory = factory;
+        this.items = new ArrayList<>();
+        this.other = defaultCategory;
+    }
+
+    public GenericAdapter(GenericAdapterFactory factory, String other) {
+        this.factory = factory;
+        this.items = new ArrayList<>();
+        this.other = other;
     }
 
     @Override
@@ -36,12 +49,16 @@ public class GenericAdapter<T extends GenericItem> extends RecyclerView.Adapter<
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         GenericItemView genericItemView = (GenericItemView) holder.itemView;
-        genericItemView.bind(items.get(position));
+        genericItemView.bind(getItem(position));
+    }
+
+    protected GenericItem getItem(int position) {
+        return items.get(position);
     }
 
     @Override
     public int getItemViewType(int position) {
-        return this.items.get(position).getType();
+        return getItem(position).getType();
     }
 
     @Override
@@ -49,12 +66,27 @@ public class GenericAdapter<T extends GenericItem> extends RecyclerView.Adapter<
         return items != null ? items.size() : 0;
     }
 
-    public void setItems(List<T> items) {
-        this.items = items;
+    public void setItems(List<? extends GenericItem> items) {
+
+        this.items = new ArrayList<>();
+
+        if (items != null) {
+
+            for (int i = 0, size = items.size(); i < size; i++) {
+
+                GenericItem genericItem = items.get(i);
+                this.items.add(genericItem);
+
+            }
+
+        } else {
+            this.items = new ArrayList<>();
+        }
+
         notifyDataSetChanged();
     }
 
-    public void update(T item) {
+    public void update(GenericItem item) {
         int index = items.indexOf(item);
         if (index != -1) {
             items.set(index, item);
@@ -62,7 +94,7 @@ public class GenericAdapter<T extends GenericItem> extends RecyclerView.Adapter<
         }
     }
 
-    public void remove(T item) {
+    public void remove(GenericItem item) {
         int index = items.indexOf(item);
         if (index != -1) {
             items.remove(index);
@@ -70,9 +102,17 @@ public class GenericAdapter<T extends GenericItem> extends RecyclerView.Adapter<
         }
     }
 
-    public void addItem(T item) {
+    public void addItem(GenericItem item) {
         items.add(item);
         notifyDataSetChanged();
+    }
+
+    public void addItem(int index, GenericItem item) {
+        if (items == null) {
+            items = new ArrayList<>();
+        }
+        items.add(index, item);
+        notifyItemInserted(index);
     }
 
     public void clear() {
@@ -80,5 +120,21 @@ public class GenericAdapter<T extends GenericItem> extends RecyclerView.Adapter<
             items.clear();
             notifyDataSetChanged();
         }
+    }
+
+    public int getItemPosition(GenericItem item) {
+        int itemPosition = -1;
+        if (items != null && !items.isEmpty()) {
+            itemPosition = items.indexOf(item);
+        }
+        return itemPosition;
+    }
+
+    public GenericItem getItemAtPosition(int position) {
+        GenericItem genericItem = null;
+        if (items != null && items.size() > position) {
+            genericItem = getItem(position);
+        }
+        return genericItem;
     }
 }

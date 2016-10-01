@@ -1,12 +1,12 @@
 package com.udacitynanodegree.cristhian.capstoneproject.ui.activities;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.udacitynanodegree.cristhian.capstoneproject.R;
+import com.udacitynanodegree.cristhian.capstoneproject.databinding.ActivityMainBinding;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.GenericItem;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.GenericItemView;
 import com.udacitynanodegree.cristhian.capstoneproject.managers.persistence.models.Person;
@@ -30,26 +31,22 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
         ChildEventListener {
 
     private final static String TAG = MainActivity.class.getName();
+    private ActivityMainBinding activityMainBinding;
+
+    private final int SPLASH_REQUEST_CODE = 0;
+    private final int INTRO_REQUEST_CODE = 1;
+
     private FirebaseAuth firebaseAuth;
-    private Button buttonSignOut;
     private DatabaseReference mDatabase;
     private Person person;
-    private GenericAdapter<GenericItem> adapter;
-    RecyclerView recyclerViewVehicles;
-
+    private GenericAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        View decorView = getWindow().getDecorView();
-        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
-        init();
-        getUserData();
-
-//        List<String> list = new ArrayList<>();
-//        Log.e(TAG + "ITEM", "ITEM: " + list.get(-1));
+        overridePendingTransition(R.anim.slide_in_activities, R.anim.slide_out_activities);
+        activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        startActivityForResult(new Intent(this, SplashActivity.class), SPLASH_REQUEST_CODE);
     }
 
     private void init() {
@@ -60,8 +57,35 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
         initListeners();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == SPLASH_REQUEST_CODE) {
+            manageOnResultSplash(resultCode);
+        } else if (requestCode == INTRO_REQUEST_CODE) {
+            manageOnResultIntro();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void manageOnResultSplash(int resultCode) {
+        if (resultCode == RESULT_OK) {
+            startActivityForResult(new Intent(this, AccountActivity.class), INTRO_REQUEST_CODE);
+        } else {
+            finish();
+        }
+    }
+
+    private void manageOnResultIntro() {
+        Log.e(TAG, "ENTER TO MAINACTIVITY");
+        init();
+        getUserData();
+        //        List<String> list = new ArrayList<>();
+//        Log.e(TAG + "ITEM", "ITEM: " + list.get(-1));
+    }
+
     private void initRecyclerViewAdapter() {
-        adapter = new GenericAdapter<>(new GenericAdapterFactory() {
+        adapter = new GenericAdapter(new GenericAdapterFactory() {
             @Override
             public GenericItemView onCreateViewHolder(ViewGroup parent, int viewType) {
                 VehicleItemView vehicleItemView = new VehicleItemView(parent.getContext());
@@ -71,22 +95,21 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
     }
 
     private void initViews() {
-        buttonSignOut = (Button) findViewById(R.id.button_sign_out);
-        recyclerViewVehicles = (RecyclerView) findViewById(R.id.recyclerView_my_vehicles);
+
     }
 
     private void initListeners() {
-        buttonSignOut.setOnClickListener(this);
+        activityMainBinding.buttonSignOut.setOnClickListener(this);
     }
 
     private void buildViews() {
-        recyclerViewVehicles.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerViewVehicles.setVerticalScrollBarEnabled(true);
-        recyclerViewVehicles.addItemDecoration(new SimpleDividerItemDecoration(this));
-        recyclerViewVehicles.setHasFixedSize(true);
-        recyclerViewVehicles.setVerticalScrollBarEnabled(true);
-        recyclerViewVehicles.setAdapter(adapter);
-        adapter.setItems((List<GenericItem>) getVehicleItems(person.getVehicles()));
+        activityMainBinding.recyclerViewMyVehicles.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        activityMainBinding.recyclerViewMyVehicles.setVerticalScrollBarEnabled(true);
+        activityMainBinding.recyclerViewMyVehicles.addItemDecoration(new SimpleDividerItemDecoration(this));
+        activityMainBinding.recyclerViewMyVehicles.setHasFixedSize(true);
+        activityMainBinding.recyclerViewMyVehicles.setVerticalScrollBarEnabled(true);
+        activityMainBinding.recyclerViewMyVehicles.setAdapter(adapter);
+        adapter.setItems(getVehicleItems(person.getVehicles()));
     }
 
     @Override

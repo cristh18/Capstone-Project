@@ -14,7 +14,6 @@ public class SplashActivity extends BaseFragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setFullScreenActivity();
         setContentView(R.layout.activity_splash);
         buildView();
     }
@@ -34,10 +33,7 @@ public class SplashActivity extends BaseFragmentActivity {
     }
 
     private void goToAccount() {
-        Intent mainIntent = new Intent(this, AccountActivity.class);
-        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(mainIntent);
+        setResult(RESULT_OK);
         finish();
     }
 
@@ -53,15 +49,4 @@ public class SplashActivity extends BaseFragmentActivity {
             }
         }.start();
     }
-
-    private void setFullScreenActivity() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-            getWindow().setStatusBarColor(Color.TRANSPARENT);
-        }
-    }
-
-
 }

@@ -74,11 +74,18 @@ public class AccountActivity extends BaseFragmentActivity implements
         myRef.addValueEventListener(this);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     private void goToMainActivity() {
-        Intent mainIntent = new Intent(this, MainActivity.class);
-        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(mainIntent);
+//        Intent mainIntent = new Intent(this, MainActivity.class);
+//        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        startActivity(mainIntent);
+//        finish();
+        setResult(RESULT_OK);
         finish();
     }
 
