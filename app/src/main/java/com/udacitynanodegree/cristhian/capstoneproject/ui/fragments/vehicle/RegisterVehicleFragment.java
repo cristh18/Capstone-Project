@@ -1,4 +1,4 @@
-package com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.account;
+package com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.vehicle;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;

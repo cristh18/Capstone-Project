@@ -27,38 +27,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editText_vehicle_make"
-            android:hint="Model"
             android:layout_marginEnd="@dimen/spacing_xlarge"
             android:layout_marginLeft="@dimen/spacing_xlarge"
             android:layout_marginRight="@dimen/spacing_xlarge"
             android:layout_marginStart="@dimen/spacing_xlarge"
-            android:gravity="center" />
+            android:gravity="center"
+            android:hint="Model" />
 
         <EditText
             android:id="@+id/editText_vehicle_year"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editText_vehicle_model"
-            android:hint="Year"
             android:layout_marginEnd="@dimen/spacing_xlarge"
             android:layout_marginLeft="@dimen/spacing_xlarge"
             android:layout_marginRight="@dimen/spacing_xlarge"
             android:layout_marginStart="@dimen/spacing_xlarge"
             android:layout_marginTop="@dimen/spacing_xlarge"
-            android:gravity="center" />
+            android:gravity="center"
+            android:hint="Year" />
 
         <EditText
             android:id="@+id/editText_vehicle_submodel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editText_vehicle_year"
-            android:hint="Submodel"
             android:layout_marginEnd="@dimen/spacing_xlarge"
             android:layout_marginLeft="@dimen/spacing_xlarge"
             android:layout_marginRight="@dimen/spacing_xlarge"
             android:layout_marginStart="@dimen/spacing_xlarge"
             android:layout_marginTop="@dimen/spacing_xlarge"
-            android:gravity="center" />
+            android:gravity="center"
+            android:hint="Submodel" />
 
         <EditText
             android:id="@+id/editText_vehicle_engine"
@@ -75,14 +75,12 @@
 
         <Button
             android:id="@+id/button_register_finish"
+            style="@style/style_button_primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/spacing_large"
-            android:layout_marginEnd="@dimen/spacing_xlarge"
-            android:layout_marginLeft="@dimen/spacing_xlarge"
-            android:layout_marginRight="@dimen/spacing_xlarge"
-            android:layout_marginStart="@dimen/spacing_xlarge"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/spacing_xlarge"
             android:text="@string/copy.register_finish" />
 
     </RelativeLayout>

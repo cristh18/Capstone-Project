@@ -54,7 +54,7 @@ public class VehicleItemView extends LinearLayout implements GenericItemView, Vi
     @Override
     public void bind(GenericItem item) {
         vehicle = (Vehicle) item;
-        itemVehicleBinding.textViewVehicleName.setText(vehicle.getMake());
+        itemVehicleBinding.textViewVehicleName.setText(vehicle.toString());
     }
 
     @Override

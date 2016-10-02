@@ -1,12 +1,15 @@
 package com.udacitynanodegree.cristhian.capstoneproject.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.firebase.database.IgnoreExtraProperties;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.GenericItem;
 
 import java.util.List;
 
 @IgnoreExtraProperties
-public class Vehicle implements GenericItem {
+public class Vehicle implements GenericItem, Parcelable {
 
     private String year;
     private String make;
@@ -77,14 +80,7 @@ public class Vehicle implements GenericItem {
 
     @Override
     public String toString() {
-        return "Vehicle{" +
-                "year='" + year + '\'' +
-                ", make='" + make + '\'' +
-                ", model='" + model + '\'' +
-                ", submodel='" + submodel + '\'' +
-                ", engine='" + engine + '\'' +
-                ", autoParts=" + autoParts +
-                '}';
+        return getMake().concat(" ").concat(getModel()).concat(" ").concat(getSubmodel()).concat(" ").concat(getYear());
     }
 
     @Override
@@ -118,5 +114,37 @@ public class Vehicle implements GenericItem {
     @Override
     public int getType() {
         return 0;
+    }
+
+    public static final Parcelable.Creator<Vehicle> CREATOR = new Creator<Vehicle>() {
+
+        public Vehicle createFromParcel(Parcel source) {
+            return new Vehicle(
+                    source.readString(),
+                    source.readString(),
+                    source.readString(),
+                    source.readString(),
+                    source.readString(),
+                    source.readArrayList(Vehicle.class.getClassLoader()));
+        }
+
+        public Vehicle[] newArray(int size) {
+            return new Vehicle[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(year);
+        dest.writeString(make);
+        dest.writeString(model);
+        dest.writeString(submodel);
+        dest.writeString(engine);
+        dest.writeList(autoParts);
     }
 }
