@@ -113,16 +113,16 @@ public class MainActivity extends BaseFragmentActivity implements
             ViewUtil.hideGoneViews(mainBinding.containerLayoutVehicles);
             addFragment(new RegisterVehicleFragment());
         } else {
-            mainBinding.recyclerViewMyVehicles.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-            mainBinding.recyclerViewMyVehicles.setVerticalScrollBarEnabled(true);
-            mainBinding.recyclerViewMyVehicles.addItemDecoration(new SimpleDividerItemDecoration(this));
-            mainBinding.recyclerViewMyVehicles.setHasFixedSize(true);
-            mainBinding.recyclerViewMyVehicles.setVerticalScrollBarEnabled(true);
-            mainBinding.recyclerViewMyVehicles.setAdapter(adapter);
-            adapter.setItems(getVehicleItems(person.getVehicles()));
+//            mainBinding.recyclerViewMyVehicles.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+//            mainBinding.recyclerViewMyVehicles.setVerticalScrollBarEnabled(true);
+//            mainBinding.recyclerViewMyVehicles.addItemDecoration(new SimpleDividerItemDecoration(this));
+//            mainBinding.recyclerViewMyVehicles.setHasFixedSize(true);
+//            mainBinding.recyclerViewMyVehicles.setVerticalScrollBarEnabled(true);
+//            mainBinding.recyclerViewMyVehicles.setAdapter(adapter);
+//            adapter.setItems(getVehicleItems(person.getVehicles()));
             // TODO DELETE
-//            mainBinding.containerLayoutVehicles.setVisibility(View.GONE);
-//            addFragment(new RegisterVehicleFragment());
+            mainBinding.containerLayoutVehicles.setVisibility(View.GONE);
+            addFragment(new RegisterVehicleFragment());
         }
     }
 

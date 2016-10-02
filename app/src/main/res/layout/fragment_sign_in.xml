@@ -20,39 +20,35 @@
             android:src="@drawable/img_splash_logo"
             tools:src="@drawable/img_splash_logo" />
 
-        <EditText
-            android:id="@+id/editText_sign_in_user_email"
-            style="@style/style_edit_text_primary"
+        <com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets.FormEditText
+            android:id="@+id/editText_email"
+            style="@style/style_edit_text_form_custom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imageView_icon_sign_in"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/font_large"
-            android:drawableStart="@drawable/ic_perm_identity_black"
-            android:gravity="center"
-            android:hint="@string/copy.register_hint_email"
-            android:inputType="textEmailAddress"
-            app:font="@{`regular`}" />
+            android:layout_marginTop="@dimen/spacing_xlarge"
+            app:hint="@string/copy.register_hint_email"
+            app:drawableStart="@drawable/ic_perm_identity_black"
+            app:inputType="email"
+            app:textLimit="50" />
 
-        <EditText
-            android:id="@+id/editText_sign_in_user_password"
-            style="@style/style_edit_text_primary"
+        <com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets.FormEditText
+            android:id="@+id/editText_password"
+            style="@style/style_edit_text_form_custom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editText_sign_in_user_email"
-            android:layout_marginTop="@dimen/spacing_medium"
-            android:drawableStart="@drawable/ic_lock_outline_black"
-            android:gravity="center"
-            android:hint="@string/copy.register_hint_password"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            app:font="@{`regular`}" />
+            android:layout_below="@+id/editText_email"
+            app:hint="@string/copy.register_hint_password"
+            app:drawableStart="@drawable/ic_lock_black"
+            app:drawableEnd="@drawable/ic_visibility_black"
+            app:inputType="textPassword"
+            app:textLimit="16" />
 
         <TextView
             android:id="@+id/textView_forgot_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editText_sign_in_user_password"
+            android:layout_below="@+id/editText_password"
             android:layout_marginTop="@dimen/spacing_medium"
             android:gravity="center"
             android:text="@string/copy.login_forgot_password"

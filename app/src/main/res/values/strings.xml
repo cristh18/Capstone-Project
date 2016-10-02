@@ -2,4 +2,5 @@
     <string name="app_name">Car Encyclopedia</string>
     <string name="copy.registering_user">Registering Please Wait...</string>
     <string name="copy.logging_user">Please Wait...</string>
+    <string name="copy.account_name">Name</string>
 </resources>

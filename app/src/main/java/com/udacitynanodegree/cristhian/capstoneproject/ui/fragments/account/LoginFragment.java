@@ -57,7 +57,8 @@ public class LoginFragment extends FragmentView implements View.OnClickListener 
         switch (view.getId()) {
             case R.id.button_sign_in:
                 Toast.makeText(getContext(), "SIGN IN", Toast.LENGTH_SHORT).show();
-                loginListener.onSignIn(signInBinding.editTextSignInUserEmail.getText().toString(), signInBinding.editTextSignInUserPassword.getText().toString());
+                loginListener.onSignIn(signInBinding.editTextEmail.getEditText().getText().toString(),
+                        signInBinding.editTextPassword.getEditText().getText().toString());
                 break;
             case R.id.textView_forgot_password:
                 Toast.makeText(getContext(), "FORGOT PASSWORD", Toast.LENGTH_SHORT).show();

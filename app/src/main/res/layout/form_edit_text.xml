@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.percent.PercentRelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height_header_main"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/spacing_xlarge"
+            android:layout_marginEnd="@dimen/spacing_xlarge"
+            android:layout_marginBottom="@dimen/spacing_medium"
+            android:background="@drawable/bg_edit_text">
+
+            <ImageView
+                android:id="@+id/image_start"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/spacing_medium"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/text"
+                style="@style/style_edit_text_form_no_bg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignBottom="@+id/image_start"
+                android:layout_marginEnd="@dimen/spacing_medium"
+                android:layout_marginStart="@dimen/spacing_medium"
+                android:layout_toEndOf="@+id/image_start"
+                android:drawablePadding="@dimen/spacing_medium"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center_vertical"
+                android:hint="@string/copy.account_name"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/gray_mid"
+                android:textSize="@dimen/font_medium"
+                app:font="@{`regular`}" />
+
+            <ImageView
+                android:id="@+id/image_end"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/spacing_medium"
+                android:visibility="invisible" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/error"
+            style="@style/style_edit_text_error_message"
+            android:layout_alignEnd="@+id/frame"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="1"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi " />
+
+    </android.support.percent.PercentRelativeLayout>
+
+</layout>

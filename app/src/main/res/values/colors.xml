@@ -11,7 +11,5 @@
     <color name="blue_primary">#278BAC</color>
     <color name="blue_secondary">#44B8DB</color>
     <color name="gray_light">#F5F5F5</color>
-
-    <color name="brown">#5A4F2A</color>
-    <color name="background_color">#2F2E42</color>
+    <color name="charcoal">#3B433F</color>
 </resources>
