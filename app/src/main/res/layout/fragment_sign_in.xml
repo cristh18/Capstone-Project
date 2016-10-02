@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -22,32 +22,31 @@
 
         <EditText
             android:id="@+id/editText_sign_in_user_email"
+            style="@style/style_edit_text_primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imageView_icon_sign_in"
-            android:layout_marginEnd="@dimen/spacing_xlarge"
-            android:layout_marginLeft="@dimen/spacing_xlarge"
-            android:layout_marginRight="@dimen/spacing_xlarge"
-            android:layout_marginStart="@dimen/spacing_xlarge"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/font_large"
+            android:drawableStart="@drawable/ic_perm_identity_black"
             android:gravity="center"
             android:hint="@string/copy.register_hint_email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            app:font="@{`regular`}" />
 
         <EditText
             android:id="@+id/editText_sign_in_user_password"
+            style="@style/style_edit_text_primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editText_sign_in_user_email"
-            android:layout_marginEnd="@dimen/spacing_xlarge"
-            android:layout_marginLeft="@dimen/spacing_xlarge"
-            android:layout_marginRight="@dimen/spacing_xlarge"
-            android:layout_marginStart="@dimen/spacing_xlarge"
             android:layout_marginTop="@dimen/spacing_medium"
+            android:drawableStart="@drawable/ic_lock_outline_black"
             android:gravity="center"
             android:hint="@string/copy.register_hint_password"
             android:inputType="textPassword"
-            android:singleLine="true" />
+            android:maxLines="1"
+            app:font="@{`regular`}" />
 
         <TextView
             android:id="@+id/textView_forgot_password"
@@ -56,20 +55,25 @@
             android:layout_below="@+id/editText_sign_in_user_password"
             android:layout_marginTop="@dimen/spacing_medium"
             android:gravity="center"
-            android:text="@string/copy.login_forgot_password" />
+            android:text="@string/copy.login_forgot_password"
+            android:textColor="@color/gray_mid"
+            app:font="@{`regular`}" />
 
         <Button
             android:id="@+id/button_sign_in"
+            style="@style/style_button_primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView_forgot_password"
             android:layout_centerHorizontal="true"
             android:layout_marginEnd="@dimen/spacing_xlarge"
-            android:layout_marginLeft="@dimen/spacing_xlarge"
-            android:layout_marginRight="@dimen/spacing_xlarge"
             android:layout_marginStart="@dimen/spacing_xlarge"
             android:layout_marginTop="@dimen/spacing_medium"
-            android:text="@string/copy.login_sign_in" />
+            android:text="@string/copy.login_sign_in"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_large"
+            app:font="@{`bold`}" />
 
         <TextView
             android:id="@+id/textView_or"
@@ -78,20 +82,23 @@
             android:layout_below="@+id/button_sign_in"
             android:layout_marginTop="@dimen/spacing_medium"
             android:gravity="center"
-            android:text="@string/copy.login_or" />
+            android:text="@string/copy.login_or"
+            android:textColor="@color/black"
+            app:font="@{`regular`}" />
 
         <Button
             android:id="@+id/button_google_sign_in"
+            style="@style/style_button_secondary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView_or"
             android:layout_centerHorizontal="true"
             android:layout_marginEnd="@dimen/spacing_xlarge"
-            android:layout_marginLeft="@dimen/spacing_xlarge"
-            android:layout_marginRight="@dimen/spacing_xlarge"
             android:layout_marginStart="@dimen/spacing_xlarge"
             android:layout_marginTop="@dimen/spacing_medium"
-            android:text="@string/copy.login_google_sign_in" />
+            android:text="@string/copy.login_google_sign_in"
+            android:textSize="@dimen/font_large"
+            app:font="@{`bold`}" />
 
         <TextView
             android:id="@+id/textView_sign_up"
@@ -100,6 +107,8 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="@dimen/spacing_large"
             android:gravity="center"
-            android:text="@string/copy.login_sign_up" />
+            android:text="@string/copy.login_sign_up"
+            android:textColor="@color/gray_mid"
+            app:font="@{`regular`}" />
     </RelativeLayout>
 </layout>

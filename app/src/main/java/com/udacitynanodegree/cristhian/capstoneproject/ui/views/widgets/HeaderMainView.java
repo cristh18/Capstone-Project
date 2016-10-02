@@ -112,7 +112,7 @@ public class HeaderMainView extends Toolbar implements View.OnClickListener {
         if (background != -1) {
             headerMainBinding.relativeLayoutMainContainer.setBackgroundColor(background);
         } else {
-            headerMainBinding.relativeLayoutMainContainer.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.red));
+            headerMainBinding.relativeLayoutMainContainer.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.red_primary));
         }
     }
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:id="@+id/relativeLayout_main_container"
@@ -35,6 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textAllCaps="false"
+            app:font="@{`bold`}"
             tools:text="Titulo" />
 
         <ImageView

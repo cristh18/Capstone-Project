@@ -58,4 +58,22 @@ public class ViewUtil {
         }
         return icon;
     }
+
+    public static void hideGoneViews(View... views){
+        for(View view : views){
+            view.setVisibility(View.GONE);
+        }
+    }
+
+    public static void hideInvisibleViews(View... views){
+        for(View view : views){
+            view.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    public static void showViews(View... views){
+        for(View view : views){
+            view.setVisibility(View.VISIBLE);
+        }
+    }
 }

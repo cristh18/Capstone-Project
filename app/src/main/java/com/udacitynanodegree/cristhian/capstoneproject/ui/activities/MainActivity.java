@@ -26,6 +26,7 @@ import com.udacitynanodegree.cristhian.capstoneproject.ui.factories.GenericAdapt
 import com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.account.RegisterVehicleFragment;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.views.SimpleDividerItemDecoration;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.views.items.VehicleItemView;
+import com.udacitynanodegree.cristhian.capstoneproject.utils.ViewUtil;
 
 import java.util.List;
 
@@ -109,7 +110,7 @@ public class MainActivity extends BaseFragmentActivity implements
 
     private void buildViews() {
         if (person.getVehicles().isEmpty()) {
-            mainBinding.containerLayoutVehicles.setVisibility(View.GONE);
+            ViewUtil.hideGoneViews(mainBinding.containerLayoutVehicles);
             addFragment(new RegisterVehicleFragment());
         } else {
             mainBinding.recyclerViewMyVehicles.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -151,7 +152,7 @@ public class MainActivity extends BaseFragmentActivity implements
 
     @Override
     public void onBackRegisterVehicle() {
-        mainBinding.containerLayoutVehicles.setVisibility(View.VISIBLE);
+        ViewUtil.showViews(mainBinding.containerLayoutVehicles);
     }
 
     @Override
