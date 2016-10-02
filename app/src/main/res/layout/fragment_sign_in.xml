@@ -1,103 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_sign_in"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+<layout>
 
-    <ImageView
-        android:id="@+id/imageView_icon_sign_in"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/spacing_huge"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/img_splash_logo"
-        tools:src="@drawable/img_splash_logo" />
-
-    <EditText
-        android:id="@+id/editText_sign_in_user_email"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/layout_sign_in"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView_icon_sign_in"
-        android:layout_marginEnd="@dimen/spacing_xlarge"
-        android:layout_marginLeft="@dimen/spacing_xlarge"
-        android:layout_marginRight="@dimen/spacing_xlarge"
-        android:layout_marginStart="@dimen/spacing_xlarge"
-        android:layout_marginTop="@dimen/font_large"
+        android:layout_height="match_parent"
+        android:background="@color/white"
         android:gravity="center"
-        android:hint="@string/copy.register_hint_email"
-        android:inputType="textEmailAddress" />
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/editText_sign_in_user_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText_sign_in_user_email"
-        android:layout_marginEnd="@dimen/spacing_xlarge"
-        android:layout_marginLeft="@dimen/spacing_xlarge"
-        android:layout_marginRight="@dimen/spacing_xlarge"
-        android:layout_marginStart="@dimen/spacing_xlarge"
-        android:layout_marginTop="@dimen/spacing_medium"
-        android:gravity="center"
-        android:hint="@string/copy.register_hint_password"
-        android:inputType="textPassword"
-        android:singleLine="true" />
+        <ImageView
+            android:id="@+id/imageView_icon_sign_in"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/spacing_huge"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/img_splash_logo"
+            tools:src="@drawable/img_splash_logo" />
 
-    <TextView
-        android:id="@+id/textView_forgot_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editText_sign_in_user_password"
-        android:layout_marginTop="@dimen/spacing_medium"
-        android:gravity="center"
-        android:text="@string/copy.login_forgot_password" />
+        <EditText
+            android:id="@+id/editText_sign_in_user_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView_icon_sign_in"
+            android:layout_marginEnd="@dimen/spacing_xlarge"
+            android:layout_marginLeft="@dimen/spacing_xlarge"
+            android:layout_marginRight="@dimen/spacing_xlarge"
+            android:layout_marginStart="@dimen/spacing_xlarge"
+            android:layout_marginTop="@dimen/font_large"
+            android:gravity="center"
+            android:hint="@string/copy.register_hint_email"
+            android:inputType="textEmailAddress" />
 
-    <Button
-        android:id="@+id/button_sign_in"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_forgot_password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="@dimen/spacing_xlarge"
-        android:layout_marginLeft="@dimen/spacing_xlarge"
-        android:layout_marginRight="@dimen/spacing_xlarge"
-        android:layout_marginStart="@dimen/spacing_xlarge"
-        android:layout_marginTop="@dimen/spacing_medium"
-        android:text="@string/copy.login_sign_in" />
+        <EditText
+            android:id="@+id/editText_sign_in_user_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText_sign_in_user_email"
+            android:layout_marginEnd="@dimen/spacing_xlarge"
+            android:layout_marginLeft="@dimen/spacing_xlarge"
+            android:layout_marginRight="@dimen/spacing_xlarge"
+            android:layout_marginStart="@dimen/spacing_xlarge"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:gravity="center"
+            android:hint="@string/copy.register_hint_password"
+            android:inputType="textPassword"
+            android:singleLine="true" />
 
-    <TextView
-        android:id="@+id/textView_or"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_sign_in"
-        android:layout_marginTop="@dimen/spacing_medium"
-        android:gravity="center"
-        android:text="@string/copy.login_or" />
+        <TextView
+            android:id="@+id/textView_forgot_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText_sign_in_user_password"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:gravity="center"
+            android:text="@string/copy.login_forgot_password" />
 
-    <Button
-        android:id="@+id/button_google_sign_in"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_or"
-        android:layout_centerHorizontal="true"
-        android:layout_marginEnd="@dimen/spacing_xlarge"
-        android:layout_marginLeft="@dimen/spacing_xlarge"
-        android:layout_marginRight="@dimen/spacing_xlarge"
-        android:layout_marginStart="@dimen/spacing_xlarge"
-        android:layout_marginTop="@dimen/spacing_medium"
-        android:text="@string/copy.login_google_sign_in" />
+        <Button
+            android:id="@+id/button_sign_in"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_forgot_password"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="@dimen/spacing_xlarge"
+            android:layout_marginLeft="@dimen/spacing_xlarge"
+            android:layout_marginRight="@dimen/spacing_xlarge"
+            android:layout_marginStart="@dimen/spacing_xlarge"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text="@string/copy.login_sign_in" />
 
-    <TextView
-        android:id="@+id/textView_sign_up"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="@dimen/spacing_large"
-        android:gravity="center"
-        android:text="@string/copy.login_sign_up" />
+        <TextView
+            android:id="@+id/textView_or"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button_sign_in"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:gravity="center"
+            android:text="@string/copy.login_or" />
 
+        <Button
+            android:id="@+id/button_google_sign_in"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_or"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="@dimen/spacing_xlarge"
+            android:layout_marginLeft="@dimen/spacing_xlarge"
+            android:layout_marginRight="@dimen/spacing_xlarge"
+            android:layout_marginStart="@dimen/spacing_xlarge"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:text="@string/copy.login_google_sign_in" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/textView_sign_up"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/spacing_large"
+            android:gravity="center"
+            android:text="@string/copy.login_sign_up" />
+    </RelativeLayout>
+</layout>

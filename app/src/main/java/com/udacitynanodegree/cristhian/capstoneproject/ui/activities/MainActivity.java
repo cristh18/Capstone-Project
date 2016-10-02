@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -18,20 +19,23 @@ import com.udacitynanodegree.cristhian.capstoneproject.R;
 import com.udacitynanodegree.cristhian.capstoneproject.databinding.ActivityMainBinding;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.GenericItem;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.GenericItemView;
-import com.udacitynanodegree.cristhian.capstoneproject.managers.persistence.models.Person;
-import com.udacitynanodegree.cristhian.capstoneproject.managers.persistence.models.Vehicle;
+import com.udacitynanodegree.cristhian.capstoneproject.model.Person;
+import com.udacitynanodegree.cristhian.capstoneproject.model.Vehicle;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.adapters.GenericAdapter;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.factories.GenericAdapterFactory;
+import com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.account.RegisterVehicleFragment;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.views.SimpleDividerItemDecoration;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.views.items.VehicleItemView;
 
 import java.util.List;
 
-public class MainActivity extends BaseFragmentActivity implements View.OnClickListener,
+public class MainActivity extends BaseFragmentActivity implements
+        View.OnClickListener,
+        RegisterVehicleFragment.RegisterVehicleListener,
         ChildEventListener {
 
     private final static String TAG = MainActivity.class.getName();
-    private ActivityMainBinding activityMainBinding;
+    private ActivityMainBinding mainBinding;
 
     private final int SPLASH_REQUEST_CODE = 0;
     private final int INTRO_REQUEST_CODE = 1;
@@ -45,7 +49,7 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.slide_in_activities, R.anim.slide_out_activities);
-        activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         startActivityForResult(new Intent(this, SplashActivity.class), SPLASH_REQUEST_CODE);
     }
 
@@ -80,6 +84,7 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
         Log.e(TAG, "ENTER TO MAINACTIVITY");
         init();
         getUserData();
+
         //        List<String> list = new ArrayList<>();
 //        Log.e(TAG + "ITEM", "ITEM: " + list.get(-1));
     }
@@ -99,17 +104,25 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
     }
 
     private void initListeners() {
-        activityMainBinding.buttonSignOut.setOnClickListener(this);
+        mainBinding.buttonSignOut.setOnClickListener(this);
     }
 
     private void buildViews() {
-        activityMainBinding.recyclerViewMyVehicles.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        activityMainBinding.recyclerViewMyVehicles.setVerticalScrollBarEnabled(true);
-        activityMainBinding.recyclerViewMyVehicles.addItemDecoration(new SimpleDividerItemDecoration(this));
-        activityMainBinding.recyclerViewMyVehicles.setHasFixedSize(true);
-        activityMainBinding.recyclerViewMyVehicles.setVerticalScrollBarEnabled(true);
-        activityMainBinding.recyclerViewMyVehicles.setAdapter(adapter);
-        adapter.setItems(getVehicleItems(person.getVehicles()));
+        if (person.getVehicles().isEmpty()) {
+            mainBinding.containerLayoutVehicles.setVisibility(View.GONE);
+            addFragment(new RegisterVehicleFragment());
+        } else {
+            mainBinding.recyclerViewMyVehicles.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+            mainBinding.recyclerViewMyVehicles.setVerticalScrollBarEnabled(true);
+            mainBinding.recyclerViewMyVehicles.addItemDecoration(new SimpleDividerItemDecoration(this));
+            mainBinding.recyclerViewMyVehicles.setHasFixedSize(true);
+            mainBinding.recyclerViewMyVehicles.setVerticalScrollBarEnabled(true);
+            mainBinding.recyclerViewMyVehicles.setAdapter(adapter);
+            adapter.setItems(getVehicleItems(person.getVehicles()));
+            // TODO DELETE
+//            mainBinding.containerLayoutVehicles.setVisibility(View.GONE);
+//            addFragment(new RegisterVehicleFragment());
+        }
     }
 
     @Override
@@ -123,11 +136,7 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
     }
 
     private void goToAccountActivity() {
-        Intent mainIntent = new Intent(this, AccountActivity.class);
-        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(mainIntent);
-        finish();
+        startActivityForResult(new Intent(this, AccountActivity.class), INTRO_REQUEST_CODE);
     }
 
     private void getUserData() {
@@ -138,6 +147,16 @@ public class MainActivity extends BaseFragmentActivity implements View.OnClickLi
     private List<? extends GenericItem> getVehicleItems(List<Vehicle> items) {
         List<? extends GenericItem> vehicleItems = items;
         return vehicleItems;
+    }
+
+    @Override
+    public void onBackRegisterVehicle() {
+        mainBinding.containerLayoutVehicles.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onFinish() {
+        Toast.makeText(this, "USER REGISTERED", Toast.LENGTH_SHORT).show();
     }
 
     @Override

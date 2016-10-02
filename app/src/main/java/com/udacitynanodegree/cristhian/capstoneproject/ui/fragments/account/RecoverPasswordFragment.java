@@ -1,47 +1,42 @@
 package com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.account;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.udacitynanodegree.cristhian.capstoneproject.R;
+import com.udacitynanodegree.cristhian.capstoneproject.databinding.FragmentRecoverPasswordBinding;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.FragmentView;
-import com.udacitynanodegree.cristhian.capstoneproject.interfaces.RecoverPasswordListener;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets.HeaderMainView;
 
 public class RecoverPasswordFragment extends FragmentView implements
         HeaderMainView.HeaderMainListener,
         View.OnClickListener {
 
+    private FragmentRecoverPasswordBinding recoverPasswordBinding;
     private RecoverPasswordListener recoverPasswordListener;
-    private HeaderMainView headerMainView;
-    private Button buttonRecoverPassword;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_recover_password, container, false);
-        init(view);
-        return view;
+        recoverPasswordBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_recover_password, container, false);
+        init();
+        return recoverPasswordBinding.getRoot();
     }
 
-    private void init(View view) {
-        initViews(view);
+    private void init() {
         initListeners();
     }
 
-    private void initViews(View view) {
-        headerMainView = (HeaderMainView) view.findViewById(R.id.headerMainView_recover_password);
-        buttonRecoverPassword = (Button) view.findViewById(R.id.button_recover_password);
-    }
 
     private void initListeners() {
-        headerMainView.setHeaderMainListener(this);
-        buttonRecoverPassword.setOnClickListener(this);
+        recoverPasswordBinding.headerMainViewRecoverPassword.setHeaderMainListener(this);
+        recoverPasswordBinding.buttonRecoverPassword.setOnClickListener(this);
     }
 
     @Override
@@ -62,7 +57,7 @@ public class RecoverPasswordFragment extends FragmentView implements
 
     @Override
     public void onClickBackHeader() {
-        recoverPasswordListener.onBackRecoverPassword();
+        close();
     }
 
     @Override
@@ -77,5 +72,9 @@ public class RecoverPasswordFragment extends FragmentView implements
                 recoverPasswordListener.onRecoverPassword();
                 break;
         }
+    }
+
+    public interface RecoverPasswordListener {
+        void onRecoverPassword();
     }
 }

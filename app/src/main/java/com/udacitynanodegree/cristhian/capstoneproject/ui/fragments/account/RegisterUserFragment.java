@@ -1,53 +1,41 @@
 package com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.account;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import com.udacitynanodegree.cristhian.capstoneproject.R;
+import com.udacitynanodegree.cristhian.capstoneproject.databinding.FragmentRegisterUserBinding;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.FragmentView;
-import com.udacitynanodegree.cristhian.capstoneproject.interfaces.RegisterUserListener;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets.HeaderMainView;
 
 public class RegisterUserFragment extends FragmentView implements
         HeaderMainView.HeaderMainListener,
         View.OnClickListener {
 
-    private HeaderMainView headerMainView;
+    private FragmentRegisterUserBinding registerUserBinding;
     private RegisterUserListener registerUserListener;
-    private Button buttonContinue;
-    private EditText editTextUserEmail;
-    private EditText editTextUserPassword;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_register_user, container, false);
-        init(view);
-        return view;
+        registerUserBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_register_user, container, false);
+        init();
+        return registerUserBinding.getRoot();
     }
 
-    private void init(View view) {
-        initViews(view);
+    private void init() {
         initListeners();
     }
 
-    private void initViews(View view) {
-        headerMainView = (HeaderMainView) view.findViewById(R.id.headerMainView_register_user);
-        editTextUserEmail = (EditText) view.findViewById(R.id.editText_user_email);
-        editTextUserPassword = (EditText) view.findViewById(R.id.editText_user_password);
-        buttonContinue = (Button) view.findViewById(R.id.button_register_user);
-    }
-
     private void initListeners() {
-        headerMainView.setHeaderMainListener(this);
-        buttonContinue.setOnClickListener(this);
+        registerUserBinding.headerMainViewRegisterUser.setHeaderMainListener(this);
+        registerUserBinding.buttonRegisterUser.setOnClickListener(this);
     }
 
     @Override
@@ -68,8 +56,7 @@ public class RegisterUserFragment extends FragmentView implements
 
     @Override
     public void onClickBackHeader() {
-        Toast.makeText(getContext(), "BACK", Toast.LENGTH_SHORT).show();
-        registerUserListener.onBackRegisterUser();
+        close();
     }
 
     @Override
@@ -81,8 +68,12 @@ public class RegisterUserFragment extends FragmentView implements
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_register_user:
-                registerUserListener.onRegisterUser(editTextUserEmail.getText().toString(), editTextUserPassword.getText().toString());
+                registerUserListener.onRegisterUser(registerUserBinding.editTextUserEmail.getText().toString(), registerUserBinding.editTextUserPassword.getText().toString());
                 break;
         }
+    }
+
+    public interface RegisterUserListener {
+        void onRegisterUser(String userEmail, String userPassword);
     }
 }

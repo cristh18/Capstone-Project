@@ -2,13 +2,13 @@ package com.udacitynanodegree.cristhian.capstoneproject.ui.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.androidadvance.topsnackbar.TSnackbar;
@@ -22,25 +22,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.udacitynanodegree.cristhian.capstoneproject.R;
-import com.udacitynanodegree.cristhian.capstoneproject.interfaces.LoginListener;
-import com.udacitynanodegree.cristhian.capstoneproject.interfaces.RecoverPasswordListener;
-import com.udacitynanodegree.cristhian.capstoneproject.interfaces.RegisterUserListener;
-import com.udacitynanodegree.cristhian.capstoneproject.interfaces.RegisterVehicleListener;
+import com.udacitynanodegree.cristhian.capstoneproject.databinding.ActivityAccountBinding;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.account.LoginFragment;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.account.RecoverPasswordFragment;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.account.RegisterUserFragment;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets.ColoredSnackbar;
 
 public class AccountActivity extends BaseFragmentActivity implements
-        LoginListener,
-        RegisterUserListener,
-        RegisterVehicleListener,
-        RecoverPasswordListener,
+        LoginFragment.LoginListener,
+        RegisterUserFragment.RegisterUserListener,
+        RecoverPasswordFragment.RecoverPasswordListener,
         ValueEventListener {
 
+    private ActivityAccountBinding accountBinding;
     private final static String TAG = AccountActivity.class.getName();
-    private FrameLayout containerAccount;
-    private FrameLayout frameLayout;
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
 
@@ -51,6 +46,7 @@ public class AccountActivity extends BaseFragmentActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
+        accountBinding = DataBindingUtil.setContentView(this, R.layout.activity_account);
         init();
         initViews();
         validateSession();
@@ -61,8 +57,6 @@ public class AccountActivity extends BaseFragmentActivity implements
     }
 
     private void initViews() {
-        containerAccount = (FrameLayout) findViewById(R.id.container_account);
-        frameLayout = (FrameLayout) findViewById(R.id.container);
         progressDialog = new ProgressDialog(this);
     }
 
@@ -80,11 +74,6 @@ public class AccountActivity extends BaseFragmentActivity implements
     }
 
     private void goToMainActivity() {
-//        Intent mainIntent = new Intent(this, MainActivity.class);
-//        mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//        startActivity(mainIntent);
-//        finish();
         setResult(RESULT_OK);
         finish();
     }
@@ -98,16 +87,16 @@ public class AccountActivity extends BaseFragmentActivity implements
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                showSnackBar(containerAccount, getString(R.string.copy_register_user_successful), Snackbar.LENGTH_SHORT, false);
+                                showSnackBar(accountBinding.containerAccount, getString(R.string.copy_register_user_successful), Snackbar.LENGTH_SHORT, false);
                                 goToMainActivity();
                             } else {
-                                showSnackBar(containerAccount, getString(R.string.copy_user_registration_failed), Snackbar.LENGTH_SHORT, true);
+                                showSnackBar(accountBinding.containerAccount, getString(R.string.copy_user_registration_failed), Snackbar.LENGTH_SHORT, true);
                             }
                             progressDialog.dismiss();
                         }
                     });
         } else {
-            showSnackBar(containerAccount, getString(R.string.copy_error_register_user), Snackbar.LENGTH_SHORT, true);
+            showSnackBar(accountBinding.containerAccount, getString(R.string.copy_error_register_user), Snackbar.LENGTH_SHORT, true);
         }
     }
 
@@ -140,39 +129,19 @@ public class AccountActivity extends BaseFragmentActivity implements
 
     @Override
     public void onForgotPassword() {
-        replaceFragment(new RecoverPasswordFragment());
+        addFragment(new RecoverPasswordFragment());
     }
 
     @Override
     public void onSignUp() {
-        replaceFragment(new RegisterUserFragment());
-    }
-
-    @Override
-    public void onBackRegisterUser() {
-        replaceFragment(new LoginFragment());
+        addFragment(new RegisterUserFragment());
     }
 
     @Override
     public void onRegisterUser(String userEmail, String userPassword) {
-        //        replaceFragment(new RegisterVehicleFragment());
         registerUser(userEmail, userPassword);
     }
 
-    @Override
-    public void onBackRegisterVehicle() {
-        replaceFragment(new RegisterUserFragment());
-    }
-
-    @Override
-    public void onFinish() {
-        Toast.makeText(this, "USER REGISTERED", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onBackRecoverPassword() {
-        replaceFragment(new LoginFragment());
-    }
 
     @Override
     public void onRecoverPassword() {

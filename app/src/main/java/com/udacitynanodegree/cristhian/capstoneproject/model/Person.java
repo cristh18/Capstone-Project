@@ -1,4 +1,4 @@
-package com.udacitynanodegree.cristhian.capstoneproject.managers.persistence.models;
+package com.udacitynanodegree.cristhian.capstoneproject.model;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 

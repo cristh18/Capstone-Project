@@ -1,11 +1,8 @@
 package com.udacitynanodegree.cristhian.capstoneproject.ui.activities;
 
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.view.View;
 
 import com.udacitynanodegree.cristhian.capstoneproject.R;
 
@@ -14,7 +11,7 @@ public class SplashActivity extends BaseFragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        DataBindingUtil.setContentView(this, R.layout.activity_splash);
         buildView();
     }
 
@@ -30,6 +27,12 @@ public class SplashActivity extends BaseFragmentActivity {
 
     private void buildView() {
         startTimer();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(-1, R.anim.slide_out_activities);
     }
 
     private void goToAccount() {

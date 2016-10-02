@@ -2,17 +2,17 @@ package com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.databinding.DataBindingUtil;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.udacitynanodegree.cristhian.capstoneproject.R;
+import com.udacitynanodegree.cristhian.capstoneproject.databinding.ViewHeaderMainBinding;
 import com.udacitynanodegree.cristhian.capstoneproject.utils.ViewUtil;
 
 public class HeaderMainView extends Toolbar implements View.OnClickListener {
@@ -22,16 +22,9 @@ public class HeaderMainView extends Toolbar implements View.OnClickListener {
     private String titleToolbar;
     private Drawable imageLeft;
     private Drawable imageRight;
-    private ImageView imageViewHeaderBack;
-    private TextView textViewHeaderTitle;
     private int background = -1;
     private Drawable imageBackground;
-    private ImageView imageViewHeaderRight;
-    private ImageView imageViewBackground;
-
-    private RelativeLayout relativeLayoutContainer;
-
-    private View headerMainView;
+    private ViewHeaderMainBinding headerMainBinding;
 
     public HeaderMainView(Context context) {
         super(context);
@@ -93,13 +86,7 @@ public class HeaderMainView extends Toolbar implements View.OnClickListener {
     private void initViews() {
         setContentInsetsAbsolute(0, 0);
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        headerMainView = inflater.inflate(R.layout.view_header_main, this, true);
-        relativeLayoutContainer = (RelativeLayout) findViewById(R.id.relativeLayout_main_container);
-        imageViewHeaderBack = (ImageView) findViewById(R.id.imageView_header_back);
-        imageViewHeaderRight = (ImageView) findViewById(R.id.imageView_header_right);
-        textViewHeaderTitle = (TextView) findViewById(R.id.textView_header_title);
-        imageViewBackground = (ImageView) findViewById(R.id.imageView_background);
-
+        headerMainBinding = DataBindingUtil.inflate(inflater, R.layout.view_header_main, this, true);
     }
 
     private void buildViews() {
@@ -111,50 +98,49 @@ public class HeaderMainView extends Toolbar implements View.OnClickListener {
 
     private void setBackground() {
         if (imageBackground != null) {
-//            ViewUtil.setBackgroundView(headerMainBinding.relativeLayoutMainContainer, null);
-            ViewUtil.setBackgroundView(relativeLayoutContainer, null);
-            imageViewBackground.setImageDrawable(imageBackground);
-            imageViewBackground.setVisibility(View.VISIBLE);
+            ViewUtil.setBackgroundView(headerMainBinding.relativeLayoutMainContainer, null);
+            headerMainBinding.imageViewBackground.setImageDrawable(imageBackground);
+            headerMainBinding.imageViewBackground.setVisibility(View.VISIBLE);
         } else {
-            imageViewBackground.setImageDrawable(null);
-            imageViewBackground.setVisibility(View.GONE);
+            headerMainBinding.imageViewBackground.setImageDrawable(null);
+            headerMainBinding.imageViewBackground.setVisibility(View.GONE);
             setBackgroundColor();
         }
     }
 
     private void setBackgroundColor() {
         if (background != -1) {
-            relativeLayoutContainer.setBackgroundColor(background);
+            headerMainBinding.relativeLayoutMainContainer.setBackgroundColor(background);
         } else {
-            relativeLayoutContainer.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.red));
+            headerMainBinding.relativeLayoutMainContainer.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.red));
         }
     }
 
     private void setRightImageDrawable() {
         if (imageRight != null) {
-            imageViewHeaderRight.setImageDrawable(imageRight);
+            headerMainBinding.imageViewHeaderRight.setImageDrawable(imageRight);
         }
     }
 
     private void setTitleHeaderText() {
         if (titleToolbar != null) {
-            textViewHeaderTitle.setText(titleToolbar);
+            headerMainBinding.textViewHeaderTitle.setText(titleToolbar);
         }
     }
 
     private void setLeftImageDrawable() {
         if (imageLeft != null) {
-            imageViewHeaderBack.setImageDrawable(imageLeft);
+            headerMainBinding.imageViewHeaderBack.setImageDrawable(imageLeft);
         }
     }
 
     private void initListeners() {
-        imageViewHeaderBack.setOnClickListener(this);
-        imageViewHeaderRight.setOnClickListener(this);
+        headerMainBinding.imageViewHeaderBack.setOnClickListener(this);
+        headerMainBinding.imageViewHeaderRight.setOnClickListener(this);
     }
 
     public void setTextTitle(String titleToolbar) {
-        textViewHeaderTitle.setText(titleToolbar);
+        headerMainBinding.textViewHeaderTitle.setText(titleToolbar);
     }
 
     public void setImageLeft(Drawable imageLeft) {
@@ -163,7 +149,7 @@ public class HeaderMainView extends Toolbar implements View.OnClickListener {
     }
 
     public void hideImageViewHeaderBack() {
-        imageViewHeaderBack.setVisibility(GONE);
+        headerMainBinding.imageViewHeaderBack.setVisibility(GONE);
     }
 
     @Override
@@ -184,7 +170,7 @@ public class HeaderMainView extends Toolbar implements View.OnClickListener {
     }
 
     public void setVisibilityRightButton(int visibility) {
-        imageViewHeaderRight.setVisibility(visibility);
+        headerMainBinding.imageViewHeaderRight.setVisibility(visibility);
     }
 
     public void setBackgroundColor(int resource) {
@@ -197,14 +183,14 @@ public class HeaderMainView extends Toolbar implements View.OnClickListener {
         setBackground();
     }
 
+    public TextView getTextViewHeaderTitle() {
+        return headerMainBinding.textViewHeaderTitle;
+    }
+
     public interface HeaderMainListener {
 
         void onClickBackHeader();
 
         void onClickRightHeader();
-    }
-
-    public TextView getTextViewHeaderTitle() {
-        return textViewHeaderTitle;
     }
 }

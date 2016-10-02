@@ -1,58 +1,40 @@
 package com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.account;
 
 import android.content.Context;
-import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.udacitynanodegree.cristhian.capstoneproject.R;
+import com.udacitynanodegree.cristhian.capstoneproject.databinding.FragmentSignInBinding;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.FragmentView;
-import com.udacitynanodegree.cristhian.capstoneproject.interfaces.LoginListener;
-import com.udacitynanodegree.cristhian.capstoneproject.ui.activities.AccountActivity;
-import com.udacitynanodegree.cristhian.capstoneproject.ui.activities.MainActivity;
 
 public class LoginFragment extends FragmentView implements View.OnClickListener {
 
-    private Button buttonSignIn;
-    private Button buttonGoogleSignIn;
-    private TextView textViewForgotPassword;
-    private TextView textViewSignUp;
-    private EditText editTextUserEmail;
-    private EditText editTextUserPassword;
+    private FragmentSignInBinding signInBinding;
     private LoginListener loginListener;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sign_in, container, false);
-        initViews(view);
-        initListeners();
-        return view;
+        signInBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_in, container, false);
+        init();
+        return signInBinding.getRoot();
     }
 
-    private void initViews(View view) {
-        ImageView imageView = (ImageView) view.findViewById(R.id.imageView_icon_sign_in);
-        buttonSignIn = (Button) view.findViewById(R.id.button_sign_in);
-        buttonGoogleSignIn = (Button) view.findViewById(R.id.button_google_sign_in);
-        textViewForgotPassword = (TextView) view.findViewById(R.id.textView_forgot_password);
-        textViewSignUp = (TextView) view.findViewById(R.id.textView_sign_up);
-        editTextUserEmail = (EditText) view.findViewById(R.id.editText_sign_in_user_email);
-        editTextUserPassword = (EditText) view.findViewById(R.id.editText_sign_in_user_password);
+    private void init() {
+        initListeners();
     }
 
     private void initListeners() {
-        buttonSignIn.setOnClickListener(this);
-        buttonGoogleSignIn.setOnClickListener(this);
-        textViewForgotPassword.setOnClickListener(this);
-        textViewSignUp.setOnClickListener(this);
+        signInBinding.buttonSignIn.setOnClickListener(this);
+        signInBinding.buttonGoogleSignIn.setOnClickListener(this);
+        signInBinding.textViewForgotPassword.setOnClickListener(this);
+        signInBinding.textViewSignUp.setOnClickListener(this);
     }
 
     @Override
@@ -75,7 +57,7 @@ public class LoginFragment extends FragmentView implements View.OnClickListener 
         switch (view.getId()) {
             case R.id.button_sign_in:
                 Toast.makeText(getContext(), "SIGN IN", Toast.LENGTH_SHORT).show();
-                loginListener.onSignIn(editTextUserEmail.getText().toString(), editTextUserPassword.getText().toString());
+                loginListener.onSignIn(signInBinding.editTextSignInUserEmail.getText().toString(), signInBinding.editTextSignInUserPassword.getText().toString());
                 break;
             case R.id.textView_forgot_password:
                 Toast.makeText(getContext(), "FORGOT PASSWORD", Toast.LENGTH_SHORT).show();
@@ -89,5 +71,15 @@ public class LoginFragment extends FragmentView implements View.OnClickListener 
                 loginListener.onSignUp();
                 break;
         }
+    }
+
+    public interface LoginListener {
+        void onSignIn(String userEmail, String userPassword);
+
+        void onGoogleSignIn();
+
+        void onForgotPassword();
+
+        void onSignUp();
     }
 }
