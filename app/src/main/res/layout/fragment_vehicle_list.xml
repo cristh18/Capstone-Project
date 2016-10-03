@@ -21,6 +21,17 @@
             android:layout_above="@+id/button_sign_out"
             android:layout_below="@+id/headerMainView_my_vehicles" />
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="@dimen/spacing_xxlarge"
+            android:layout_marginBottom="@dimen/spacing_huge"
+            android:src="@drawable/ic_plus" />
+
         <Button
             android:id="@+id/button_sign_out"
             style="@style/style_primary_button"
