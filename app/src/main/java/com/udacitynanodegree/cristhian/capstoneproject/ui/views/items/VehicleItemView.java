@@ -59,6 +59,10 @@ public class VehicleItemView extends LinearLayout implements GenericItemView, Vi
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(context, "FIRST AUTOPART: ".concat(vehicle.getAutoParts().get(0).getName()), Toast.LENGTH_LONG).show();
+        if (vehicle.getAutoParts() != null && !vehicle.getAutoParts().isEmpty()) {
+            Toast.makeText(context, "FIRST AUTOPART: ".concat(vehicle.getAutoParts().get(0).getName()), Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(context, "THIS VEHICLE HAS NOT AUTOPARTS", Toast.LENGTH_LONG).show();
+        }
     }
 }

@@ -15,4 +15,10 @@
     <string name="copy.error_register_user">Empty Credentials</string>
     <string name="copy.user_registration_failed">User registration failed</string>
     <string name="copy.register_user_successful">Register successful</string>
+
+    <string name="copy.register_vehicle.make">Make</string>
+    <string name="copy.register_vehicle.model">Model</string>
+    <string name="copy.register_vehicle.submodel">SubModel</string>
+    <string name="copy.register_vehicle.year">Year</string>
+    <string name="copy.register_vehicle.engine">Engine</string>
 </resources>

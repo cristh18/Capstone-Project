@@ -103,22 +103,28 @@ public class MainActivity extends BaseFragmentActivity implements
     }
 
     @Override
-    public void onFinish() {
-        Toast.makeText(this, "USER REGISTERED", Toast.LENGTH_SHORT).show();
+    public void onRegisterVehicle() {
+        Toast.makeText(this, "VEHICLE REGISTERED", Toast.LENGTH_SHORT).show();
+        showMyVehicles();
     }
 
     private void validateVehicles() {
         if (!vehicles.isEmpty()) {
 //            showMyVehicles();
-            addFragment(new RegisterVehicleFragment());
+            registerVehicle();
         } else {
-            addFragment(new RegisterVehicleFragment());
+            registerVehicle();
         }
     }
 
     private void showMyVehicles() {
         VehicleListFragment vehicleListFragment = VehicleListFragment.newInstance(vehicles);
         addFragment(vehicleListFragment);
+    }
+
+    private void registerVehicle() {
+        RegisterVehicleFragment registerVehicleFragment = RegisterVehicleFragment.newInstance(vehicles);
+        addFragment(registerVehicleFragment);
     }
 
     @Override

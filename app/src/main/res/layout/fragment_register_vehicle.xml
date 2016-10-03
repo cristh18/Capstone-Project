@@ -5,8 +5,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical">
+        android:background="@color/white">
 
         <com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets.HeaderMainView
             android:id="@+id/headerMainView_register_vehicle"
@@ -14,74 +13,80 @@
             android:layout_height="@dimen/height_header_main"
             app:title_toolbar="@string/copy.register_vehicle_toolbar_title" />
 
-        <Spinner
-            android:id="@+id/editText_vehicle_make"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/headerMainView_register_vehicle"
-            android:layout_margin="@dimen/spacing_xlarge"
-            android:gravity="center" />
+            android:layout_height="match_parent"
+            android:layout_above="@+id/button_register_vehicle"
+            android:layout_below="@+id/headerMainView_register_vehicle">
 
-        <EditText
-            android:id="@+id/editText_vehicle_model"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/editText_vehicle_make"
-            android:layout_marginEnd="@dimen/spacing_xlarge"
-            android:layout_marginLeft="@dimen/spacing_xlarge"
-            android:layout_marginRight="@dimen/spacing_xlarge"
-            android:layout_marginStart="@dimen/spacing_xlarge"
-            android:gravity="center"
-            android:hint="Model" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/editText_vehicle_year"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/editText_vehicle_model"
-            android:layout_marginEnd="@dimen/spacing_xlarge"
-            android:layout_marginLeft="@dimen/spacing_xlarge"
-            android:layout_marginRight="@dimen/spacing_xlarge"
-            android:layout_marginStart="@dimen/spacing_xlarge"
-            android:layout_marginTop="@dimen/spacing_xlarge"
-            android:gravity="center"
-            android:hint="Year" />
+                <Spinner
+                    android:id="@+id/spinner_vehicle_make"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/spacing_xlarge"
+                    android:background="@drawable/bg_edit_text"
+                    android:gravity="center" />
 
-        <EditText
-            android:id="@+id/editText_vehicle_submodel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/editText_vehicle_year"
-            android:layout_marginEnd="@dimen/spacing_xlarge"
-            android:layout_marginLeft="@dimen/spacing_xlarge"
-            android:layout_marginRight="@dimen/spacing_xlarge"
-            android:layout_marginStart="@dimen/spacing_xlarge"
-            android:layout_marginTop="@dimen/spacing_xlarge"
-            android:gravity="center"
-            android:hint="Submodel" />
+                <com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets.FormEditText
+                    android:id="@+id/editText_vehicle_model"
+                    style="@style/style_edit_text_form_custom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/spinner_vehicle_make"
+                    app:hint="@string/copy.register_vehicle.model"
+                    app:inputType="text"
+                    app:textLimit="16" />
 
-        <EditText
-            android:id="@+id/editText_vehicle_engine"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/editText_vehicle_submodel"
-            android:layout_marginEnd="@dimen/spacing_xlarge"
-            android:layout_marginLeft="@dimen/spacing_xlarge"
-            android:layout_marginRight="@dimen/spacing_xlarge"
-            android:layout_marginStart="@dimen/spacing_xlarge"
-            android:layout_marginTop="@dimen/spacing_xlarge"
-            android:gravity="center"
-            android:hint="@string/copy.register_hint_engine" />
+                <com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets.FormEditText
+                    android:id="@+id/editText_vehicle_submodel"
+                    style="@style/style_edit_text_form_custom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/editText_vehicle_model"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    app:hint="@string/copy.register_vehicle.submodel"
+                    app:inputType="text"
+                    app:textLimit="16" />
+
+                <com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets.FormEditText
+                    android:id="@+id/editText_vehicle_year"
+                    style="@style/style_edit_text_form_custom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/editText_vehicle_submodel"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    app:hint="@string/copy.register_vehicle.year"
+                    app:inputType="text"
+                    app:textLimit="16" />
+
+
+                <com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets.FormEditText
+                    android:id="@+id/editText_vehicle_engine"
+                    style="@style/style_edit_text_form_custom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/editText_vehicle_year"
+                    android:layout_marginTop="@dimen/spacing_medium"
+                    app:hint="@string/copy.register_vehicle.engine"
+                    app:inputType="text"
+                    app:textLimit="16" />
+
+            </RelativeLayout>
+        </ScrollView>
 
         <Button
-            android:id="@+id/button_register_finish"
-            style="@style/style_button_primary"
+            android:id="@+id/button_register_vehicle"
+            style="@style/style_third_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_margin="@dimen/spacing_xlarge"
-            android:text="@string/copy.register_finish" />
-
+            android:text="@string/copy.register"
+            app:font="@{`bold`}" />
     </RelativeLayout>
 </layout>

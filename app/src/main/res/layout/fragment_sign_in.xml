@@ -57,7 +57,7 @@
 
         <Button
             android:id="@+id/button_sign_in"
-            style="@style/style_button_primary"
+            style="@style/style_primary_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView_forgot_password"
@@ -84,7 +84,7 @@
 
         <Button
             android:id="@+id/button_google_sign_in"
-            style="@style/style_button_secondary"
+            style="@style/style_secondary_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView_or"

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/textView_item_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:drawableEnd="@drawable/ic_keyboard_arrow_down_black"
+        android:gravity="center_vertical"
+        android:paddingEnd="@dimen/spacing_large"
+        android:paddingStart="@dimen/spacing_medium"
+        android:textColor="@color/gray_light_third"
+        android:textSize="@dimen/font_medium"
+        app:font="@{`regular`}" />
+</layout>
