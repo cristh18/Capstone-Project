@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.udacitynanodegree.cristhian.capstoneproject.ui.viewmodel.RegisterUserViewModel" />
+            type="com.udacitynanodegree.cristhian.capstoneproject.ui.viewmodel.account.RegisterUserViewModel" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"

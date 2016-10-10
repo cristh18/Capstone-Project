@@ -2,6 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.udacitynanodegree.cristhian.capstoneproject.ui.viewmodel.vehicle.VehicleListViewModel" />
+    </data>
+
     <RelativeLayout
         android:id="@+id/container_layout_vehicles"
         android:layout_width="match_parent"
@@ -25,11 +32,12 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="@dimen/spacing_xxlarge"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="bottom|end"
             android:layout_marginBottom="@dimen/spacing_huge"
+            android:layout_marginEnd="@dimen/spacing_xxlarge"
+            android:onClick="@{viewModel.addVehicle}"
             android:src="@drawable/ic_plus" />
 
         <Button
@@ -40,6 +48,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_margin="@dimen/spacing_xlarge"
+            android:onClick="@{viewModel.signOut}"
             android:text="@string/copy.sign_out" />
     </RelativeLayout>
 </layout>

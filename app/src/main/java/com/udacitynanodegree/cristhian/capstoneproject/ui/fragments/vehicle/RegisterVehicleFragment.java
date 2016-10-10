@@ -24,7 +24,7 @@ import java.util.List;
 public class RegisterVehicleFragment extends FragmentView implements
         HeaderMainView.HeaderMainListener,
         AdapterView.OnItemSelectedListener,
-        View.OnClickListener {
+        View.OnClickListener{
 
     private static final String ARG_VEHICLES = "ARG_VEHICLES";
     private FragmentRegisterVehicleBinding registerVehicleBinding;
@@ -108,7 +108,6 @@ public class RegisterVehicleFragment extends FragmentView implements
 
     @Override
     public void onClickBackHeader() {
-        registerVehicleListener.onBackRegisterVehicle();
         close();
     }
 
@@ -147,8 +146,6 @@ public class RegisterVehicleFragment extends FragmentView implements
     }
 
     public interface RegisterVehicleListener {
-        void onBackRegisterVehicle();
-
         void onRegisterVehicle();
     }
 }

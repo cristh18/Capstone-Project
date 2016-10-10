@@ -12,7 +12,7 @@ import com.udacitynanodegree.cristhian.capstoneproject.R;
 import com.udacitynanodegree.cristhian.capstoneproject.databinding.FragmentSignInBinding;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.FragmentView;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.activities.AccountActivity;
-import com.udacitynanodegree.cristhian.capstoneproject.ui.viewmodel.LoginViewModel;
+import com.udacitynanodegree.cristhian.capstoneproject.ui.viewmodel.account.LoginViewModel;
 
 public class LoginFragment extends FragmentView {
 

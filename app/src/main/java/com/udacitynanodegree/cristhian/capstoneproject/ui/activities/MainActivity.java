@@ -3,34 +3,28 @@ package com.udacitynanodegree.cristhian.capstoneproject.ui.activities;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.udacitynanodegree.cristhian.capstoneproject.R;
 import com.udacitynanodegree.cristhian.capstoneproject.app.IronHideApplication;
 import com.udacitynanodegree.cristhian.capstoneproject.databinding.ActivityMainBinding;
 import com.udacitynanodegree.cristhian.capstoneproject.model.Vehicle;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.vehicle.RegisterVehicleFragment;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.vehicle.VehicleListFragment;
+import com.udacitynanodegree.cristhian.capstoneproject.ui.viewmodel.MainViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BaseFragmentActivity implements
-        View.OnClickListener,
-        RegisterVehicleFragment.RegisterVehicleListener,
-        VehicleListFragment.VehicleListListener,
-        ChildEventListener {
+        RegisterVehicleFragment.RegisterVehicleListener {
 
     private final static String TAG = MainActivity.class.getName();
     private ActivityMainBinding mainBinding;
 
     private final int SPLASH_REQUEST_CODE = 0;
     private final int INTRO_REQUEST_CODE = 1;
-    private List<Vehicle> vehicles;
+    private List<Vehicle> stockVehicles;
+    private MainViewModel mainViewModel;
 
 
     @Override
@@ -61,34 +55,17 @@ public class MainActivity extends BaseFragmentActivity implements
     }
 
     private void manageOnResultIntro() {
-        getStockVehicles();
+        mainViewModel = new MainViewModel(this);
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-
-        }
-    }
-
-
-    private void signOut() {
+    public void signOut() {
         IronHideApplication.getFirebaseAuth().signOut();
+        stockVehicles = null;
         goToAccountActivity();
     }
 
     private void goToAccountActivity() {
         startActivityForResult(new Intent(this, AccountActivity.class), INTRO_REQUEST_CODE);
-    }
-
-    private void getStockVehicles() {
-        vehicles = new ArrayList<>();
-        IronHideApplication.getFirebaseDatabase().getReference().child("").addChildEventListener(this);
-    }
-
-    @Override
-    public void onBackRegisterVehicle() {
-
     }
 
     @Override
@@ -97,55 +74,32 @@ public class MainActivity extends BaseFragmentActivity implements
         showMyVehicles();
     }
 
-    private void validateVehicles() {
-        if (!vehicles.isEmpty()) {
-//            showMyVehicles();
-            registerVehicle();
-        } else {
-            registerVehicle();
-        }
-    }
-
-    private void showMyVehicles() {
-        VehicleListFragment vehicleListFragment = VehicleListFragment.newInstance(vehicles);
+    public void showMyVehicles() {
+        VehicleListFragment vehicleListFragment = VehicleListFragment.newInstance(stockVehicles);
         addFragment(vehicleListFragment);
     }
 
-    private void registerVehicle() {
-        RegisterVehicleFragment registerVehicleFragment = RegisterVehicleFragment.newInstance(vehicles);
+    public void registerVehicle() {
+        RegisterVehicleFragment registerVehicleFragment = RegisterVehicleFragment.newInstance(stockVehicles);
         addFragment(registerVehicleFragment);
     }
 
+
     @Override
-    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-        for (DataSnapshot child : dataSnapshot.getChildren()) {
-            vehicles.add(child.getValue(Vehicle.class));
-        }
-        validateVehicles();
+    public void showProgressDialog(String message) {
+        super.showProgressDialog(message);
     }
 
     @Override
-    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
+    public void dismissProgressDialog() {
+        super.dismissProgressDialog();
     }
 
-    @Override
-    public void onChildRemoved(DataSnapshot dataSnapshot) {
-
+    public List<Vehicle> getStockVehicles() {
+        return stockVehicles;
     }
 
-    @Override
-    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-    }
-
-    @Override
-    public void onCancelled(DatabaseError databaseError) {
-
-    }
-
-    @Override
-    public void onSignOut() {
-        signOut();
+    public void setStockVehicles(List<Vehicle> stockVehicles) {
+        this.stockVehicles = stockVehicles;
     }
 }

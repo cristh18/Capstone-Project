@@ -11,6 +11,7 @@
             android:id="@+id/headerMainView_register_vehicle"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_header_main"
+            app:icon_left_toolbar="@drawable/ic_white_back"
             app:title_toolbar="@string/copy.register_vehicle_toolbar_title" />
 
         <ScrollView

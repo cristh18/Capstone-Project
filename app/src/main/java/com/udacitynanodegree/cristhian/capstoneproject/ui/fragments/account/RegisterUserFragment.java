@@ -12,7 +12,7 @@ import com.udacitynanodegree.cristhian.capstoneproject.R;
 import com.udacitynanodegree.cristhian.capstoneproject.databinding.FragmentRegisterUserBinding;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.FragmentView;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.activities.AccountActivity;
-import com.udacitynanodegree.cristhian.capstoneproject.ui.viewmodel.RegisterUserViewModel;
+import com.udacitynanodegree.cristhian.capstoneproject.ui.viewmodel.account.RegisterUserViewModel;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets.HeaderMainView;
 
 public class RegisterUserFragment extends FragmentView implements

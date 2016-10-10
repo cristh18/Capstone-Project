@@ -1,4 +1,4 @@
-package com.udacitynanodegree.cristhian.capstoneproject.ui.viewmodel;
+package com.udacitynanodegree.cristhian.capstoneproject.ui.viewmodel.account;
 
 import android.content.Context;
 import android.support.design.widget.Snackbar;

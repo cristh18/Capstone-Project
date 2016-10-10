@@ -16,21 +16,23 @@ import com.udacitynanodegree.cristhian.capstoneproject.interfaces.FragmentView;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.GenericItem;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.GenericItemView;
 import com.udacitynanodegree.cristhian.capstoneproject.model.Vehicle;
+import com.udacitynanodegree.cristhian.capstoneproject.ui.activities.MainActivity;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.adapters.GenericAdapter;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.factories.GenericAdapterFactory;
+import com.udacitynanodegree.cristhian.capstoneproject.ui.viewmodel.vehicle.VehicleListViewModel;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.views.SimpleDividerItemDecoration;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.views.items.VehicleItemView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class VehicleListFragment extends FragmentView implements View.OnClickListener {
+public class VehicleListFragment extends FragmentView {
 
     private FragmentVehicleListBinding vehicleListBinding;
     private GenericAdapter adapter;
     private List<Vehicle> stockVehicles;
     private final static String ARG_VEHICLES = "ARG_VEHICLES";
-    private VehicleListListener vehicleListListener;
+    private VehicleListViewModel vehicleListViewModel;
 
     public static VehicleListFragment newInstance(List<Vehicle> vehicles) {
         Bundle bundle = new Bundle();
@@ -51,8 +53,9 @@ public class VehicleListFragment extends FragmentView implements View.OnClickLis
     }
 
     private void init() {
+        vehicleListViewModel = new VehicleListViewModel((MainActivity) getActivity());
+        vehicleListBinding.setViewModel(vehicleListViewModel);
         initRecyclerViewAdapter();
-        initListeners();
     }
 
     private void initRecyclerViewAdapter() {
@@ -62,10 +65,6 @@ public class VehicleListFragment extends FragmentView implements View.OnClickLis
                 return new VehicleItemView(parent.getContext());
             }
         });
-    }
-
-    private void initListeners() {
-        vehicleListBinding.buttonSignOut.setOnClickListener(this);
     }
 
     private void buildView() {
@@ -87,7 +86,6 @@ public class VehicleListFragment extends FragmentView implements View.OnClickLis
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        vehicleListListener = (VehicleListListener) context;
     }
 
     @Override
@@ -99,18 +97,5 @@ public class VehicleListFragment extends FragmentView implements View.OnClickLis
     @Override
     public String getName() {
         return VehicleListFragment.class.getName();
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.button_sign_out:
-                vehicleListListener.onSignOut();
-                break;
-        }
-    }
-
-    public interface VehicleListListener {
-        void onSignOut();
     }
 }
