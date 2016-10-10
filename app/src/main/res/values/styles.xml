@@ -119,4 +119,14 @@
         <item name="android:imeOptions">actionNext</item>
     </style>
 
+    <style name="CollapsingTextAppearance" parent="Base.TextAppearance.AppCompat.Widget.ActionBar.Title" />
+
+    <style name="CollapsingTextAppearance.Inverse">
+        <item name="android:textSize">@dimen/font_huge</item>
+    </style>
+
+    <style name="ToolBarWithNavigationBack">
+        <item name="navigationIcon">@drawable/ic_white_back</item>
+    </style>
+
 </resources>

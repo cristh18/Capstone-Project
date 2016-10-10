@@ -3,4 +3,18 @@
          (such as screen margins) for screens with more than 820dp of available width. This
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
     <dimen name="activity_horizontal_margin">64dp</dimen>
+    <dimen name="ctl_height">300dp</dimen>
+    <dimen name="ctl_title_margin_bottom">94dp</dimen>
+    <dimen name="nsv_behavior_overlap_top">78dp</dimen>
+    <dimen name="detail_cardView_side_margin">8dp</dimen>
+    <dimen name="detail_cardView_corner_radius">4dp</dimen>
+    <dimen name="article_title_padding">16dp</dimen>
+    <dimen name="detail_article_title_margin_top">20dp</dimen>
+    <dimen name="detail_inner_horiz_margin">16dp</dimen>
+    <dimen name="detail_article_body_margin_top">10dp</dimen>
+    <item name="detail_body_line_spacing_multiplier" format="float" type="fraction">1</item>
+    <dimen name="detail_body_bottom_margin">88dp</dimen>
+    <dimen name="fab_margin">24dp</dimen>
+    <dimen name="fab_elevation">6dp</dimen>
+    <dimen name="fab_pressed_elevation">12dp</dimen>
 </resources>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarLayout_detail_feed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/appBar_elevation"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsingToolbarLayout_detail_feed"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ctl_height"
+                app:contentScrim="?colorPrimary"
+                app:expandedTitleMarginBottom="@dimen/ctl_title_margin_bottom"
+                app:expandedTitleTextAppearance="@style/CollapsingTextAppearance.Inverse"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <ImageView
+                    android:id="@+id/imageView_photo_feed"
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:transitionName="@string/copy.vehicle_detail_transition_photo"
+                    tools:src="@drawable/london_flat" />
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar_detail_feed"
+                    style="@style/ToolBarWithNavigationBack"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@null"
+                    app:layout_collapseMode="pin" />
+            </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            app:behavior_overlapTop="@dimen/nsv_behavior_overlap_top"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardView_detail_feed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/detail_cardView_side_margin"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="@dimen/detail_cardView_corner_radius"
+                app:cardElevation="@dimen/cardview_default_elevation"
+                app:contentPaddingBottom="@dimen/article_title_padding"
+                app:contentPaddingLeft="@dimen/article_title_padding"
+                app:contentPaddingRight="@dimen/article_title_padding">
+
+                <LinearLayout
+                    android:id="@+id/container_article_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView_title_article"
+                        style="@android:style/TextAppearance.Material.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/detail_article_title_margin_top"
+                        android:gravity="center_horizontal"
+                        android:textAllCaps="false"
+                        app:font="@{`bold`}"
+                        tools:text="@string/text_header" />
+
+                    <TextView
+                        android:id="@+id/textView_line_article"
+                        style="@android:style/TextAppearance.Material.Subhead"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:textAllCaps="false"
+                        app:font="@{`regular`}"
+                        tools:text="@string/text_header" />
+
+                    <TextView
+                        android:id="@+id/article_body"
+                        style="@android:style/TextAppearance.Material.Body1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/detail_inner_horiz_margin"
+                        android:layout_marginRight="@dimen/detail_inner_horiz_margin"
+                        android:layout_marginTop="@dimen/detail_article_body_margin_top"
+                        android:alpha="0.5"
+                        android:fontFamily="sans-serif-light"
+                        android:lineSpacingMultiplier="@fraction/detail_body_line_spacing_multiplier"
+                        android:paddingBottom="@dimen/detail_body_bottom_margin"
+                        android:textColorLink="@color/red_secondary"
+                        android:textSize="@dimen/font_large"
+                        app:font="@{`regular`}"
+                        tools:text="@string/lorem" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+        </android.support.v4.widget.NestedScrollView>
+
+        <!--<android.support.design.widget.FloatingActionButton-->
+        <!--android:id="@+id/fab_share_feed"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignTop="@+id/fab"-->
+        <!--android:layout_gravity="bottom|end"-->
+        <!--android:layout_marginBottom="@dimen/fab_margin"-->
+        <!--android:layout_marginEnd="@dimen/fab_margin"-->
+        <!--android:contentDescription="@string/action_share"-->
+        <!--android:src="@drawable/ic_plus"-->
+        <!--app:borderWidth="@dimen/spacing_invisible"-->
+        <!--app:elevation="@dimen/fab_elevation"-->
+        <!--app:fabSize="normal"-->
+        <!--app:layout_anchor="@id/cardView_detail_feed"-->
+        <!--app:layout_anchorGravity="bottom|right|end"-->
+        <!--app:pressedTranslationZ="@dimen/fab_pressed_elevation" />-->
+
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/fab_share_feed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/fab"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:layout_marginEnd="@dimen/fab_margin"
+            android:contentDescription="@string/action_share"
+            android:src="@drawable/ic_plus"
+            app:borderWidth="@dimen/spacing_invisible"
+            app:elevation="@dimen/fab_elevation"
+            app:fabSize="normal"
+            app:layout_anchor="@id/cardView_detail_feed"
+            app:layout_anchorGravity="bottom|right|end"
+            app:pressedTranslationZ="@dimen/fab_pressed_elevation">
+
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/accion_favorito"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="?attr/colorAccent"
+                fab:fab_icon="@drawable/ic_plus"
+                fab:fab_size="mini"
+                fab:fab_title="Favorito" />
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/accion_buscar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="?attr/colorAccent"
+                fab:fab_icon="@drawable/ic_plus"
+                fab:fab_size="mini"
+                fab:fab_title="Buscar" />
+
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/accion_carrito"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="?attr/colorAccent"
+                fab:fab_icon="@drawable/ic_plus"
+                fab:fab_size="mini"
+                fab:fab_title="Añadir a la cesta" />
+
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</layout>

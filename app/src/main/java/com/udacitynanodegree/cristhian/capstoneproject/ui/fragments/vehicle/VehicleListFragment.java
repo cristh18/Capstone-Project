@@ -62,7 +62,7 @@ public class VehicleListFragment extends FragmentView {
         adapter = new GenericAdapter(new GenericAdapterFactory() {
             @Override
             public GenericItemView onCreateViewHolder(ViewGroup parent, int viewType) {
-                return new VehicleItemView(parent.getContext());
+                return new VehicleItemView(parent.getContext(), (MainActivity) getActivity());
             }
         });
     }

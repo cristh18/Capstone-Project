@@ -102,4 +102,11 @@ public class MainActivity extends BaseFragmentActivity implements
     public void setStockVehicles(List<Vehicle> stockVehicles) {
         this.stockVehicles = stockVehicles;
     }
+
+    public void showVehicleDescription(Vehicle vehicle){
+        Intent intent = new Intent(this, VehicleDetailActivity.class);
+        intent.putExtra("ARG_VEHICLE", vehicle);
+        startActivity(intent);
+        finish();
+    }
 }

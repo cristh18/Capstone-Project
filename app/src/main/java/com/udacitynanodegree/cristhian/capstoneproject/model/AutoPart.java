@@ -1,9 +1,12 @@
 package com.udacitynanodegree.cristhian.capstoneproject.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.firebase.database.IgnoreExtraProperties;
 
 @IgnoreExtraProperties
-public class AutoPart {
+public class AutoPart implements Parcelable {
     private String name;
     private String fullname;
     private String category;
@@ -138,5 +141,41 @@ public class AutoPart {
         result = 31 * result + (style != null ? style.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);
         return result;
+    }
+
+    public static final Parcelable.Creator<AutoPart> CREATOR = new Creator<AutoPart>() {
+
+        public AutoPart createFromParcel(Parcel source) {
+            return new AutoPart(
+                    source.readString(),
+                    source.readString(),
+                    source.readString(),
+                    source.readString(),
+                    source.readString(),
+                    source.readString(),
+                    source.readString(),
+                    source.readString());
+        }
+
+        public AutoPart[] newArray(int size) {
+            return new AutoPart[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(fullname);
+        dest.writeString(category);
+        dest.writeString(image);
+        dest.writeString(weight);
+        dest.writeString(description);
+        dest.writeString(style);
+        dest.writeString(type);
     }
 }
