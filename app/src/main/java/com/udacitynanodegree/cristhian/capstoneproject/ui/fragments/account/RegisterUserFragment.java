@@ -11,15 +11,15 @@ import android.view.ViewGroup;
 import com.udacitynanodegree.cristhian.capstoneproject.R;
 import com.udacitynanodegree.cristhian.capstoneproject.databinding.FragmentRegisterUserBinding;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.FragmentView;
+import com.udacitynanodegree.cristhian.capstoneproject.ui.activities.AccountActivity;
+import com.udacitynanodegree.cristhian.capstoneproject.ui.viewmodel.RegisterUserViewModel;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets.HeaderMainView;
 
 public class RegisterUserFragment extends FragmentView implements
-        HeaderMainView.HeaderMainListener,
-        View.OnClickListener {
+        HeaderMainView.HeaderMainListener {
 
     private FragmentRegisterUserBinding registerUserBinding;
-    private RegisterUserListener registerUserListener;
-
+    private RegisterUserViewModel registerUserViewModel;
 
     @Nullable
     @Override
@@ -31,17 +31,17 @@ public class RegisterUserFragment extends FragmentView implements
 
     private void init() {
         initListeners();
+        registerUserViewModel = new RegisterUserViewModel(this, (AccountActivity) getActivity(), getContext());
+        registerUserBinding.setViewModel(registerUserViewModel);
     }
 
     private void initListeners() {
         registerUserBinding.headerMainViewRegisterUser.setHeaderMainListener(this);
-        registerUserBinding.buttonRegisterUser.setOnClickListener(this);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        registerUserListener = (RegisterUserListener) context;
     }
 
     @Override
@@ -64,16 +64,7 @@ public class RegisterUserFragment extends FragmentView implements
 
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.button_register_user:
-                registerUserListener.onRegisterUser(registerUserBinding.editTextUserEmail.getText().toString(), registerUserBinding.editTextUserPassword.getText().toString());
-                break;
-        }
-    }
-
-    public interface RegisterUserListener {
-        void onRegisterUser(String userEmail, String userPassword);
+    public FragmentRegisterUserBinding getRegisterUserBinding() {
+        return registerUserBinding;
     }
 }

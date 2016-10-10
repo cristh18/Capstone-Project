@@ -6,13 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.udacitynanodegree.cristhian.capstoneproject.R;
+import com.udacitynanodegree.cristhian.capstoneproject.app.IronHideApplication;
 import com.udacitynanodegree.cristhian.capstoneproject.databinding.ActivityMainBinding;
 import com.udacitynanodegree.cristhian.capstoneproject.model.Vehicle;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.vehicle.RegisterVehicleFragment;
@@ -32,9 +30,6 @@ public class MainActivity extends BaseFragmentActivity implements
 
     private final int SPLASH_REQUEST_CODE = 0;
     private final int INTRO_REQUEST_CODE = 1;
-
-    private FirebaseAuth firebaseAuth;
-    private DatabaseReference mDatabase;
     private List<Vehicle> vehicles;
 
 
@@ -44,11 +39,6 @@ public class MainActivity extends BaseFragmentActivity implements
         overridePendingTransition(R.anim.slide_in_activities, R.anim.slide_out_activities);
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         startActivityForResult(new Intent(this, SplashActivity.class), SPLASH_REQUEST_CODE);
-    }
-
-    private void init() {
-        firebaseAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     @Override
@@ -71,7 +61,6 @@ public class MainActivity extends BaseFragmentActivity implements
     }
 
     private void manageOnResultIntro() {
-        init();
         getStockVehicles();
     }
 
@@ -84,7 +73,7 @@ public class MainActivity extends BaseFragmentActivity implements
 
 
     private void signOut() {
-        firebaseAuth.signOut();
+        IronHideApplication.getFirebaseAuth().signOut();
         goToAccountActivity();
     }
 
@@ -94,7 +83,7 @@ public class MainActivity extends BaseFragmentActivity implements
 
     private void getStockVehicles() {
         vehicles = new ArrayList<>();
-        mDatabase.child("").addChildEventListener(this);
+        IronHideApplication.getFirebaseDatabase().getReference().child("").addChildEventListener(this);
     }
 
     @Override

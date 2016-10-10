@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.udacitynanodegree.cristhian.capstoneproject.ui.viewmodel.LoginViewModel" />
+    </data>
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/layout_sign_in"
@@ -27,8 +34,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/imageView_icon_sign_in"
             android:layout_marginTop="@dimen/spacing_xlarge"
-            app:hint="@string/copy.register_hint_email"
             app:drawableStart="@drawable/ic_perm_identity_black"
+            app:hint="@string/copy.register_hint_email"
             app:inputType="email"
             app:textLimit="50" />
 
@@ -38,9 +45,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editText_email"
-            app:hint="@string/copy.register_hint_password"
-            app:drawableStart="@drawable/ic_lock_black"
             app:drawableEnd="@drawable/ic_visibility_black"
+            app:drawableStart="@drawable/ic_lock_black"
+            app:hint="@string/copy.register_hint_password"
             app:inputType="textPassword"
             app:textLimit="16" />
 
@@ -49,6 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editText_password"
+            android:onClick="@{viewModel.forgotPassword}"
             android:layout_marginTop="@dimen/spacing_medium"
             android:gravity="center"
             android:text="@string/copy.login_forgot_password"
@@ -65,6 +73,7 @@
             android:layout_marginEnd="@dimen/spacing_xlarge"
             android:layout_marginStart="@dimen/spacing_xlarge"
             android:layout_marginTop="@dimen/spacing_medium"
+            android:onClick="@{viewModel.signIn}"
             android:text="@string/copy.login_sign_in"
             android:textAllCaps="false"
             android:textColor="@color/white"
@@ -89,6 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView_or"
             android:layout_centerHorizontal="true"
+            android:onClick="@{viewModel.googleSignIn}"
             android:layout_marginEnd="@dimen/spacing_xlarge"
             android:layout_marginStart="@dimen/spacing_xlarge"
             android:layout_marginTop="@dimen/spacing_medium"
@@ -101,6 +111,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:onClick="@{viewModel.signUp}"
             android:layout_marginBottom="@dimen/spacing_large"
             android:gravity="center"
             android:text="@string/copy.login_sign_up"
