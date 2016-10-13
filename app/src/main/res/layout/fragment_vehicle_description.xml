@@ -121,6 +121,7 @@
             android:contentDescription="@string/action_share"
             android:src="@drawable/ic_plus"
             app:borderWidth="@dimen/spacing_invisible"
+            fab:fab_labelStyle="@style/labels"
             app:elevation="@dimen/fab_elevation"
             app:fabSize="normal"
             app:layout_anchor="@id/cardView_detail_feed"
@@ -128,7 +129,7 @@
             app:pressedTranslationZ="@dimen/fab_pressed_elevation">
 
             <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/share_action"
+                android:id="@+id/fab_share_action"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:fab_icon="@drawable/ic_share_white"
@@ -137,7 +138,7 @@
                 fab:fab_title="Share" />
 
             <com.getbase.floatingactionbutton.FloatingActionButton
-                android:id="@+id/see_parts_action"
+                android:id="@+id/fab_see_parts_action"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:fab_icon="@drawable/ic_settings_white"
