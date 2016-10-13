@@ -4,6 +4,13 @@
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.udacitynanodegree.cristhian.capstoneproject.ui.viewmodel.vehicle.VehicleDescriptionViewModel" />
+    </data>
+
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/coordinator_layout"
         android:layout_width="match_parent"
@@ -121,12 +128,12 @@
             android:contentDescription="@string/action_share"
             android:src="@drawable/ic_plus"
             app:borderWidth="@dimen/spacing_invisible"
-            fab:fab_labelStyle="@style/labels"
             app:elevation="@dimen/fab_elevation"
             app:fabSize="normal"
             app:layout_anchor="@id/cardView_detail_feed"
             app:layout_anchorGravity="bottom|right|end"
-            app:pressedTranslationZ="@dimen/fab_pressed_elevation">
+            app:pressedTranslationZ="@dimen/fab_pressed_elevation"
+            fab:fab_labelStyle="@style/labels">
 
             <com.getbase.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab_share_action"
@@ -141,6 +148,7 @@
                 android:id="@+id/fab_see_parts_action"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="@{viewModel.showVehicleParts}"
                 app:fab_icon="@drawable/ic_settings_white"
                 fab:fab_colorNormal="?attr/colorAccent"
                 fab:fab_size="mini"

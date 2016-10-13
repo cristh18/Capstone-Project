@@ -31,7 +31,7 @@ public class RegisterUserFragment extends FragmentView implements
 
     private void init() {
         initListeners();
-        registerUserViewModel = new RegisterUserViewModel(this, (AccountActivity) getActivity(), getContext());
+        registerUserViewModel = new RegisterUserViewModel(this, (AccountActivity) getActivity());
         registerUserBinding.setViewModel(registerUserViewModel);
     }
 

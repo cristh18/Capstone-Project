@@ -45,7 +45,7 @@ public class VehicleItemView extends LinearLayout implements GenericItemView {
     }
 
     private void setViewModel() {
-        vehicleItemViewModel = new VehicleItemViewModel(getContext(), mainActivity, vehicle);
+        vehicleItemViewModel = new VehicleItemViewModel(mainActivity, vehicle);
         itemVehicleBinding.setViewModel(vehicleItemViewModel);
     }
 }

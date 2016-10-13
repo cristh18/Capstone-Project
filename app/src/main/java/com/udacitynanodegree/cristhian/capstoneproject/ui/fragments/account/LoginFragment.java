@@ -28,7 +28,7 @@ public class LoginFragment extends FragmentView {
     }
 
     private void init() {
-        loginViewModel = new LoginViewModel(this, (AccountActivity) getActivity(), getContext());
+        loginViewModel = new LoginViewModel(this, (AccountActivity) getActivity());
         signInBinding.setViewModel(loginViewModel);
     }
 

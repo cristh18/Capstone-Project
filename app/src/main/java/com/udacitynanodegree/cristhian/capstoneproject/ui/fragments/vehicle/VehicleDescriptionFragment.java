@@ -14,11 +14,14 @@ import com.udacitynanodegree.cristhian.capstoneproject.R;
 import com.udacitynanodegree.cristhian.capstoneproject.databinding.FragmentVehicleDescriptionBinding;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.FragmentView;
 import com.udacitynanodegree.cristhian.capstoneproject.model.Vehicle;
+import com.udacitynanodegree.cristhian.capstoneproject.ui.activities.VehicleDetailActivity;
+import com.udacitynanodegree.cristhian.capstoneproject.ui.viewmodel.vehicle.VehicleDescriptionViewModel;
 
 public class VehicleDescriptionFragment extends FragmentView implements AppBarLayout.OnOffsetChangedListener {
 
     private static final String ARG_VEHICLE = "ARG_VEHICLE";
     private FragmentVehicleDescriptionBinding vehicleDescriptionBinding;
+    private VehicleDescriptionViewModel vehicleDescriptionViewModel;
     private Vehicle vehicle;
     private int mMaxScrollSize;
     private boolean mIsImageHidden;
@@ -44,6 +47,8 @@ public class VehicleDescriptionFragment extends FragmentView implements AppBarLa
     }
 
     private void init() {
+        vehicleDescriptionViewModel = new VehicleDescriptionViewModel((VehicleDetailActivity) getActivity());
+        vehicleDescriptionBinding.setViewModel(vehicleDescriptionViewModel);
     }
 
     private void buildView() {

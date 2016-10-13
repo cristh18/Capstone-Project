@@ -19,13 +19,13 @@
         android:layout_marginLeft="@dimen/spacing_large"
         android:layout_marginRight="@dimen/spacing_large"
         android:layout_marginTop="@dimen/spacing_small"
-        card_view:cardCornerRadius="2dp">
+        android:onClick="@{viewModel.selectVehicle}"
+        card_view:cardCornerRadius="@dimen/spacing_smaller">
 
         <RelativeLayout
             android:id="@+id/container_vehicle_item"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{viewModel.selectVehicle}"
             android:background="@color/white"
             android:gravity="center">
 
