@@ -19,6 +19,7 @@ public class IronHideApplication extends Application {
         if (app == null) {
             app = this;
         }
+
         LogUtil.setDebug(Config.DEBUG);
     }
 

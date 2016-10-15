@@ -2,11 +2,15 @@ package com.udacitynanodegree.cristhian.capstoneproject.ui.activities;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.os.CountDownTimer;
+import android.util.Log;
 
 import com.udacitynanodegree.cristhian.capstoneproject.R;
 
+import rx.Observable;
+
 public class SplashActivity extends BaseFragmentActivity {
+
+    private final String TAG = SplashActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +30,7 @@ public class SplashActivity extends BaseFragmentActivity {
     }
 
     private void buildView() {
-        startTimer();
+        loadPreferences();
     }
 
     @Override
@@ -40,16 +44,15 @@ public class SplashActivity extends BaseFragmentActivity {
         finish();
     }
 
-    private void startTimer() {
-        new CountDownTimer(5000, 5000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-            }
-
-            @Override
-            public void onFinish() {
-                goToAccount();
-            }
-        }.start();
+    private void loadPreferences() {
+        Observable.create(subscriber -> {
+            subscriber.onNext(subscriber);    // Pass on the data to subscriber
+            subscriber.onCompleted();
+        }).subscribe(
+                o -> Log.e(TAG, o.toString()),
+                e -> Log.e(TAG, e.getMessage()),
+                this::goToAccount);
     }
+
+
 }

@@ -1,6 +1,7 @@
 package com.udacitynanodegree.cristhian.capstoneproject.ui.activities;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -9,6 +10,8 @@ import com.udacitynanodegree.cristhian.capstoneproject.R;
 import com.udacitynanodegree.cristhian.capstoneproject.app.IronHideApplication;
 import com.udacitynanodegree.cristhian.capstoneproject.databinding.ActivityMainBinding;
 import com.udacitynanodegree.cristhian.capstoneproject.model.Vehicle;
+import com.udacitynanodegree.cristhian.capstoneproject.persistence.database.IronHideDBHelper;
+import com.udacitynanodegree.cristhian.capstoneproject.persistence.database.IronHideProvider;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.vehicle.RegisterVehicleFragment;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.vehicle.VehicleListFragment;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.viewmodel.MainViewModel;
@@ -32,6 +35,8 @@ public class MainActivity extends BaseFragmentActivity implements
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.slide_in_activities, R.anim.slide_out_activities);
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        IronHideDBHelper ironHideDBHelper = new IronHideDBHelper(this);
+        SQLiteDatabase bd = ironHideDBHelper.getWritableDatabase();
         startActivityForResult(new Intent(this, SplashActivity.class), SPLASH_REQUEST_CODE);
     }
 
