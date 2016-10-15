@@ -43,6 +43,10 @@ public class IronHideDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        onUpgrade(db, oldVersion, newVersion);
+    }
+
     public Uri getContentUri(String path) {
 //        return Uri.parse(context.getString(R.string.prefix_base_content_uri).concat(context.getString(R.string.content_authority)))
 //                .buildUpon().appendPath(path).build();
