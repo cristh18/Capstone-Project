@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="create_table_user">
+         CREATE TABLE user (
+         user_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+         email TEXT NOT NULL,
+         uid TEXT UNIQUE NOT NULL)
+    </string>
+
+    <string name="create_table_vehicle">
+        CREATE TABLE vehicle (
+        vehicle_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        year INTEGER NOT NULL,
+        make TEXT NOT NULL,
+        model TEXT NOT NULL,
+        submodel TEXT NOT NULL,
+        engine TEXT NOT NULL,
+        image TEXT NOT NULL,
+        description TEXT NOT NULL,
+        user_id INTEGER NOT NULL,
+        FOREIGN KEY (user_id) REFERENCES user (user_id)
+       )
+    </string>
+
+    <string name="create_table_category">
+        CREATE TABLE category (
+        category_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        name TEXT NOT NULL,
+        vehicle_id INTEGER NOT NULL,
+        FOREIGN KEY (vehicle_id) REFERENCES vehicle (vehicle_id)
+       )
+    </string>
+
+    <string name="create_table_part">
+        CREATE TABLE part (
+        part_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        description TEXT NOT NULL,
+        fullname TEXT NOT NULL,
+        image TEXT NOT NULL,
+        name TEXT NOT NULL,
+        style TEXT NOT NULL,
+        type TEXT NOT NULL,
+        weight TEXT NOT NULL,
+        category_id INTEGER NOT NULL,
+        FOREIGN KEY (category_id) REFERENCES category (category_id)
+       )
+    </string>
+
+    <string name="create_table_default_vehicle">
+        CREATE TABLE default_vehicle (
+        vehicle_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        year INTEGER NOT NULL,
+        make TEXT NOT NULL,
+        model TEXT NOT NULL,
+        submodel TEXT NOT NULL,
+        engine TEXT NOT NULL,
+        image TEXT NOT NULL,
+        description TEXT NOT NULL
+       )
+    </string>
+
+    <string name="drop_table">
+        DROP TABLE IF EXISTS %1$s
+    </string>
+
+</resources>
