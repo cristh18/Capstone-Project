@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.squareup.picasso.Picasso;
 import com.udacitynanodegree.cristhian.capstoneproject.R;
 import com.udacitynanodegree.cristhian.capstoneproject.databinding.FragmentVehicleDescriptionBinding;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.FragmentView;
@@ -56,8 +57,13 @@ public class VehicleDescriptionFragment extends FragmentView implements AppBarLa
         vehicleDescriptionBinding.appBarLayoutDetailFeed.addOnOffsetChangedListener(this);
         vehicleDescriptionBinding.textViewLineArticle.setMovementMethod(new LinkMovementMethod());
         vehicleDescriptionBinding.textViewTitleArticle.setText(vehicle.toString());
-        vehicleDescriptionBinding.articleBody.setText(getString(R.string.lorem));
-        vehicleDescriptionBinding.imageViewPhotoFeed.setImageDrawable(getContext().getDrawable(R.drawable.london_flat));
+        vehicleDescriptionBinding.articleBody.setText(vehicle.getDescription());
+        Picasso.with(getContext())
+                .load(vehicle.getImage())
+                .placeholder(R.drawable.london_flat)
+                .noFade()
+                .error(R.drawable.london_flat)
+                .into(vehicleDescriptionBinding.imageViewPhotoFeed);
     }
 
 

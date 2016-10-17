@@ -11,8 +11,10 @@ import com.udacitynanodegree.cristhian.capstoneproject.persistence.database.Iron
 public class DefaultVehicleRegistration {
 
     private static DefaultVehicleRegistration defaultVehicleRegistrationInstance = new DefaultVehicleRegistration();
+
     private DefaultVehicleRegistration() {
     }
+
     public static DefaultVehicleRegistration getDefaultVehicleRegistrationInstance() {
         return defaultVehicleRegistrationInstance;
     }
@@ -25,8 +27,8 @@ public class DefaultVehicleRegistration {
         values.put(columns[3], vehicle.getModel());
         values.put(columns[4], vehicle.getSubmodel());
         values.put(columns[5], vehicle.getEngine());
-        values.put(columns[6], "");
-        values.put(columns[7], "");
+        values.put(columns[6], vehicle.getImage());
+        values.put(columns[7], vehicle.getDescription());
 
         Uri uri = IronHideApplication.getApp().getContentResolver().insert(
                 IronHideDBHelper.getContentUri2(IronHideApplication.getApp(), IronHideApplication.getApp().getString(R.string.path_default_vehicle_table)), values);

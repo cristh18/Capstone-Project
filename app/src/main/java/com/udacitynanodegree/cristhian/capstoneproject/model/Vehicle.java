@@ -16,17 +16,21 @@ public class Vehicle implements GenericItem, Parcelable {
     private String model;
     private String submodel;
     private String engine;
+    private String description;
+    private String image;
     private List<AutoPart> autoParts;
 
     public Vehicle() {
     }
 
-    public Vehicle(String year, String make, String model, String submodel, String engine, List<AutoPart> autoParts) {
+    public Vehicle(String year, String make, String model, String submodel, String engine, String description, String image, List<AutoPart> autoParts) {
         this.year = year;
         this.make = make;
         this.model = model;
         this.submodel = submodel;
         this.engine = engine;
+        this.description = description;
+        this.image = image;
         this.autoParts = autoParts;
     }
 
@@ -70,6 +74,22 @@ public class Vehicle implements GenericItem, Parcelable {
         this.engine = engine;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public List<AutoPart> getAutoParts() {
         return autoParts;
     }
@@ -96,6 +116,9 @@ public class Vehicle implements GenericItem, Parcelable {
         if (submodel != null ? !submodel.equals(vehicle.submodel) : vehicle.submodel != null)
             return false;
         if (engine != null ? !engine.equals(vehicle.engine) : vehicle.engine != null) return false;
+        if (description != null ? !description.equals(vehicle.description) : vehicle.description != null)
+            return false;
+        if (image != null ? !image.equals(vehicle.image) : vehicle.image != null) return false;
         return autoParts != null ? autoParts.equals(vehicle.autoParts) : vehicle.autoParts == null;
 
     }
@@ -107,6 +130,8 @@ public class Vehicle implements GenericItem, Parcelable {
         result = 31 * result + (model != null ? model.hashCode() : 0);
         result = 31 * result + (submodel != null ? submodel.hashCode() : 0);
         result = 31 * result + (engine != null ? engine.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (image != null ? image.hashCode() : 0);
         result = 31 * result + (autoParts != null ? autoParts.hashCode() : 0);
         return result;
     }
@@ -120,6 +145,8 @@ public class Vehicle implements GenericItem, Parcelable {
 
         public Vehicle createFromParcel(Parcel source) {
             return new Vehicle(
+                    source.readString(),
+                    source.readString(),
                     source.readString(),
                     source.readString(),
                     source.readString(),
@@ -145,6 +172,8 @@ public class Vehicle implements GenericItem, Parcelable {
         dest.writeString(model);
         dest.writeString(submodel);
         dest.writeString(engine);
+        dest.writeString(description);
+        dest.writeString(image);
         dest.writeList(autoParts);
     }
 }
