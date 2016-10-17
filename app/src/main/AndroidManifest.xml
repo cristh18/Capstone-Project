@@ -35,6 +35,12 @@
             android:name=".ui.activities.VehicleDetailActivity"
             android:screenOrientation="sensorPortrait"
             android:theme="@style/Theme.Opaque" />
+
+        <provider
+            android:name=".persistence.database.IronHideProvider"
+            android:authorities="com.udacitynanodegree.cristhian.capstoneproject"
+            android:exported="false"
+            android:grantUriPermissions="true" />
     </application>
 
 </manifest>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="content_authority">com.udacitynanodegree.cristhian.capstoneproject</string>
+    <string name="prefix_base_content_uri">content://</string>
+
+    <string name="path_user_table">user</string>
+    <string name="path_vehicle_table">vehicle</string>
+    <string name="path_part_category_table">category</string>
+    <string name="path_part_table">part</string>
+    <string name="path_default_vehicle_table">default_vehicle</string>
+</resources>
