@@ -66,4 +66,17 @@ public class IronHideDBHelper extends SQLiteOpenHelper {
     public Uri buildUri(Uri uri, long id) {
         return ContentUris.withAppendedId(uri, id);
     }
+
+    /**
+     *
+     */
+
+    public static Uri getContentUri2(Context context, String path) {
+        return DatabaseContract.getBaseContentUri(context).buildUpon().appendPath(path).build();
+
+    }
+
+    public static Uri buildUri2(Uri uri, long id) {
+        return ContentUris.withAppendedId(uri, id);
+    }
 }

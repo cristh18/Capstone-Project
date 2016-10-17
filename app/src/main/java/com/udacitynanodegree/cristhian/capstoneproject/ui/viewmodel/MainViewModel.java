@@ -6,6 +6,7 @@ import com.google.firebase.database.DatabaseError;
 import com.udacitynanodegree.cristhian.capstoneproject.R;
 import com.udacitynanodegree.cristhian.capstoneproject.app.IronHideApplication;
 import com.udacitynanodegree.cristhian.capstoneproject.model.Vehicle;
+import com.udacitynanodegree.cristhian.capstoneproject.persistence.repository.DefaultVehicleRegistration;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.activities.MainActivity;
 
 import java.util.ArrayList;
@@ -31,6 +32,8 @@ public class MainViewModel implements ChildEventListener {
     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
         for (DataSnapshot child : dataSnapshot.getChildren()) {
             mainActivity.getStockVehicles().add(child.getValue(Vehicle.class));
+            DefaultVehicleRegistration defaultVehicleRegistration = DefaultVehicleRegistration.getDefaultVehicleRegistrationInstance();
+            defaultVehicleRegistration.insertDefaultVehicle(child.getValue(Vehicle.class));
         }
         mainActivity.showMyVehicles();
         mainActivity.dismissProgressDialog();

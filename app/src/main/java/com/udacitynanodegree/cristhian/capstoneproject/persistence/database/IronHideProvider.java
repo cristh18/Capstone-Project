@@ -163,6 +163,16 @@ public class IronHideProvider extends ContentProvider {
                 break;
             }
 
+            case DEFAULT_VEHICLE: {
+                long _id = db.insert(pathDefaultVehicle, null, values);
+                if (_id > 0) {
+                    returnUri = ironHideDBHelper.buildUri(ironHideDBHelper.getContentUri(pathDefaultVehicle), _id);
+                } else {
+                    throw new android.database.SQLException("Failed to insert row into " + uri);
+                }
+                break;
+            }
+
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }

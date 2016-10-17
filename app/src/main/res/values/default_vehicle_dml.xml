@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="default_vehicle_table_columns">
+        <item>vehicle_id</item>
+        <item>year</item>
+        <item>make</item>
+        <item>model</item>
+        <item>submodel</item>
+        <item>engine</item>
+        <item>image</item>
+        <item>description</item>
+    </string-array>
+</resources>
