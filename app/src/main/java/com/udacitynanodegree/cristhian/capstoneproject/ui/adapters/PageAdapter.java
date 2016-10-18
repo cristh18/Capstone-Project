@@ -1,20 +1,19 @@
 package com.udacitynanodegree.cristhian.capstoneproject.ui.adapters;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.PagerFragment;
-import com.udacitynanodegree.cristhian.capstoneproject.utils.VehicleUtil;
+
+import java.util.List;
 
 public class PageAdapter extends FragmentStatePagerAdapter {
 
-    Context context;
+    private List<String> categoryNames;
 
-    public PageAdapter(FragmentManager fm, Context context) {
+    public PageAdapter(FragmentManager fm) {
         super(fm);
-        this.context = context;
     }
 
     @Override
@@ -29,14 +28,22 @@ public class PageAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return getNamePage(context, position);
+        return getNamePage(position);
     }
 
-    private String getNamePage(Context context, int category) {
+    public List<String> getCategoryNames() {
+        return categoryNames;
+    }
+
+    public void setCategoryNames(List<String> categoryNames) {
+        this.categoryNames = categoryNames;
+    }
+
+    private String getNamePage(int category) {
 
         for (int i = 0; i < PagerFragment.viewFragments.length; i++) {
             if (i == category) {
-                return VehicleUtil.searchCategoryName(context, category);
+                return getCategoryNames().get(category);
             }
         }
         return null;

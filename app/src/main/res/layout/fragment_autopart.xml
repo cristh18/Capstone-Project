@@ -2,10 +2,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="@dimen/spacing_smaller"
-        android:layout_marginStart="@dimen/spacing_smaller"
-        android:padding="@dimen/activity_vertical_margin">
+        android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/app_list"
