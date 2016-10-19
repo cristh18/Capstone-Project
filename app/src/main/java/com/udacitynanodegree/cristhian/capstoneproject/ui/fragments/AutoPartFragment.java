@@ -26,6 +26,7 @@ public class AutoPartFragment extends FragmentView {
     private FragmentAutopartBinding autopartBinding;
     private String[] fragmentAutoPart = new String[1];
     private GenericAdapter adapter;
+    private List<AutoPart> autoParts;
 
     @Nullable
     @Override
@@ -56,7 +57,7 @@ public class AutoPartFragment extends FragmentView {
         autopartBinding.recyclerViewAutoParts.setHasFixedSize(true);
         autopartBinding.recyclerViewAutoParts.setVerticalScrollBarEnabled(true);
         autopartBinding.recyclerViewAutoParts.setAdapter(adapter);
-//        adapter.setItems(getAutoPartItems(stockVehicles));
+        adapter.setItems(getAutoPartItems(getAutoParts()));
     }
 
     @Override
@@ -69,9 +70,17 @@ public class AutoPartFragment extends FragmentView {
         fragmentAutoPart[0] = category;
     }
 
+    public List<AutoPart> getAutoParts() {
+        return autoParts;
+    }
+
+    public void setAutoParts(List<AutoPart> autoParts) {
+        this.autoParts = autoParts;
+    }
+
     private List<? extends GenericItem> getAutoPartItems(List<AutoPart> items) {
-        List<? extends GenericItem> vehicleItems = items;
-        return vehicleItems;
+        List<? extends GenericItem> autoPartsItems = items;
+        return autoPartsItems;
     }
 
 }
