@@ -4,9 +4,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.firebase.database.IgnoreExtraProperties;
+import com.udacitynanodegree.cristhian.capstoneproject.interfaces.GenericItem;
 
 @IgnoreExtraProperties
-public class AutoPart implements Parcelable {
+public class AutoPart implements Parcelable, GenericItem {
     private String name;
     private String fullname;
     private String category;
@@ -14,12 +15,12 @@ public class AutoPart implements Parcelable {
     private String weight;
     private String description;
     private String style;
-    private String type;
+    private String partType;
 
     public AutoPart() {
     }
 
-    public AutoPart(String name, String fullname, String category, String image, String weight, String description, String style, String type) {
+    public AutoPart(String name, String fullname, String category, String image, String weight, String description, String style, String partType) {
         this.name = name;
         this.fullname = fullname;
         this.category = category;
@@ -27,7 +28,7 @@ public class AutoPart implements Parcelable {
         this.weight = weight;
         this.description = description;
         this.style = style;
-        this.type = type;
+        this.partType = partType;
     }
 
     public String getName() {
@@ -86,12 +87,12 @@ public class AutoPart implements Parcelable {
         this.style = style;
     }
 
-    public String getType() {
-        return type;
+    public String getPartType() {
+        return partType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setPartType(String partType) {
+        this.partType = partType;
     }
 
     @Override
@@ -104,7 +105,7 @@ public class AutoPart implements Parcelable {
                 ", weight='" + weight + '\'' +
                 ", description='" + description + '\'' +
                 ", style='" + style + '\'' +
-                ", type='" + type + '\'' +
+                ", type='" + partType + '\'' +
                 '}';
     }
 
@@ -126,7 +127,7 @@ public class AutoPart implements Parcelable {
         if (description != null ? !description.equals(autoPart.description) : autoPart.description != null)
             return false;
         if (style != null ? !style.equals(autoPart.style) : autoPart.style != null) return false;
-        return type != null ? type.equals(autoPart.type) : autoPart.type == null;
+        return partType != null ? partType.equals(autoPart.partType) : autoPart.partType == null;
 
     }
 
@@ -139,7 +140,7 @@ public class AutoPart implements Parcelable {
         result = 31 * result + (weight != null ? weight.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (style != null ? style.hashCode() : 0);
-        result = 31 * result + (type != null ? type.hashCode() : 0);
+        result = 31 * result + (partType != null ? partType.hashCode() : 0);
         return result;
     }
 
@@ -176,6 +177,11 @@ public class AutoPart implements Parcelable {
         dest.writeString(weight);
         dest.writeString(description);
         dest.writeString(style);
-        dest.writeString(type);
+        dest.writeString(partType);
+    }
+
+    @Override
+    public int getType() {
+        return 0;
     }
 }
