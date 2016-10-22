@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.udacitynanodegree.cristhian.capstoneproject.model.AutoPart;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -17,5 +18,15 @@ public class PartCategoryUtil {
             }
         }
         return categories;
+    }
+
+    public static List<AutoPart> getAutoPartsByCategory(String categoryName, List<AutoPart> autoParts) {
+        List<AutoPart> partsByCategory = new ArrayList<>();
+        for (AutoPart autoPart:autoParts) {
+            if (autoPart.getCategory().equalsIgnoreCase(categoryName)){
+                partsByCategory.add(autoPart);
+            }
+        }
+        return partsByCategory;
     }
 }

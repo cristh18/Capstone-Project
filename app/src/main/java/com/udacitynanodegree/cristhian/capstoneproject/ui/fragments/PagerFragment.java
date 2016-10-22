@@ -83,7 +83,7 @@ public class PagerFragment extends FragmentView implements HeaderMainView.Header
         for (int i = 0; i < NUM_PAGES; i++) {
             viewFragments[i] = new AutoPartFragment();
             viewFragments[i].setFragmentAutoPart(String.valueOf(i));
-            viewFragments[i].setAutoParts(autoParts);
+            viewFragments[i].setAutoParts(PartCategoryUtil.getAutoPartsByCategory(new ArrayList<>(categoryNames).get(i), autoParts));
         }
 
         pageAdapter.setCategoryNames(new ArrayList<>(categoryNames));
