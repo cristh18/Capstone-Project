@@ -15,6 +15,7 @@ import com.udacitynanodegree.cristhian.capstoneproject.databinding.FragmentPager
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.FragmentView;
 import com.udacitynanodegree.cristhian.capstoneproject.model.AutoPart;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.adapters.PageAdapter;
+import com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.autopart.AutoPartFragment;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets.HeaderMainView;
 import com.udacitynanodegree.cristhian.capstoneproject.utils.PartCategoryUtil;
 

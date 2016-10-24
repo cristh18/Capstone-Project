@@ -1,4 +1,4 @@
-package com.udacitynanodegree.cristhian.capstoneproject.ui.fragments;
+package com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.autopart;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -79,8 +79,7 @@ public class AutoPartFragment extends FragmentView {
     }
 
     private List<? extends GenericItem> getAutoPartItems(List<AutoPart> items) {
-        List<? extends GenericItem> autoPartsItems = items;
-        return autoPartsItems;
+        return items;
     }
 
 }
