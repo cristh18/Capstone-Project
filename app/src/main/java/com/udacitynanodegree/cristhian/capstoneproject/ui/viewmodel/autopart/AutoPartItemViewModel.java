@@ -5,29 +5,22 @@ import android.widget.Toast;
 
 import com.udacitynanodegree.cristhian.capstoneproject.app.IronHideApplication;
 import com.udacitynanodegree.cristhian.capstoneproject.model.AutoPart;
+import com.udacitynanodegree.cristhian.capstoneproject.providers.BusRxProvider;
+import com.udacitynanodegree.cristhian.capstoneproject.ui.events.ShowAutoPartDetail;
 
 public class AutoPartItemViewModel {
 
-    private AutoPartListener autoPartListener;
     private AutoPart autoPart;
 
     public AutoPartItemViewModel(AutoPart autoPart) {
         this.autoPart = autoPart;
     }
 
-    public void selectAutoPart(View view){
-        Toast.makeText(IronHideApplication.getApp(), "Show detail of ".concat(autoPart.getName()).concat("..."), Toast.LENGTH_LONG).show();
+    public void selectAutoPart(View view) {
+        BusRxProvider.send(new ShowAutoPartDetail(autoPart));
     }
 
     public AutoPart getAutoPart() {
         return autoPart;
-    }
-
-    public void setAutoPartListener(AutoPartListener autoPartListener) {
-        this.autoPartListener = autoPartListener;
-    }
-
-    public interface AutoPartListener{
-        void onAutoPartSelected(AutoPart autoPart);
     }
 }

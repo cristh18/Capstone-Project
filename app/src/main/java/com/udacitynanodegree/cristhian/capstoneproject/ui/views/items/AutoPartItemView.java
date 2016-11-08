@@ -16,7 +16,7 @@ import com.udacitynanodegree.cristhian.capstoneproject.interfaces.GenericItemVie
 import com.udacitynanodegree.cristhian.capstoneproject.model.AutoPart;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.viewmodel.autopart.AutoPartItemViewModel;
 
-public class AutoPartItemView extends LinearLayout implements GenericItemView, AutoPartItemViewModel.AutoPartListener {
+public class AutoPartItemView extends LinearLayout implements GenericItemView {
 
     private ItemAutoPartBinding autoPartBinding;
     private Context context;
@@ -53,12 +53,6 @@ public class AutoPartItemView extends LinearLayout implements GenericItemView, A
 
     private void setViewModel(AutoPart autoPart) {
         AutoPartItemViewModel autoPartItemViewModel = new AutoPartItemViewModel(autoPart);
-        autoPartItemViewModel.setAutoPartListener(this);
         autoPartBinding.setViewModel(autoPartItemViewModel);
-    }
-
-    @Override
-    public void onAutoPartSelected(AutoPart autoPart) {
-
     }
 }

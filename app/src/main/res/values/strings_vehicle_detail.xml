@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="copy.vehicle_detail_transition_photo">transition_photo</string>
+    <string name="copy.category">Category: </string>
+    <string name="copy.weight">Weight:</string>
+    <string name="copy.style">Style: </string>
+    <string name="copy.part_value">Part type</string>
+</resources>

@@ -20,7 +20,6 @@ public class VehicleItemViewModel {
 
     public void selectVehicle(View view) {
         if (vehicle.getAutoParts() != null && !vehicle.getAutoParts().isEmpty()) {
-            Toast.makeText(IronHideApplication.getApp().getApplicationContext(), "FIRST AUTOPART: ".concat(vehicle.getAutoParts().get(0).getName()), Toast.LENGTH_LONG).show();
             mainActivity.showVehicleDescription(vehicle);
         } else {
             Toast.makeText(IronHideApplication.getApp().getApplicationContext(), "THIS VEHICLE HAS NOT AUTOPARTS", Toast.LENGTH_LONG).show();

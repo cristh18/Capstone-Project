@@ -1,40 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.udacitynanodegree.cristhian.capstoneproject.model.AutoPart" />
+
+        <variable
+            name="viewModelDetails"
+            type="com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.autopart.DetailAutoPartFragment" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/layout_detail_auto_part"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/imageView_detail_auto_part_close"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:contentDescription="@string/app_name"
+            android:padding="@dimen/spacing_medium"
+            android:onClick="@{viewModelDetails.hideDetails}"
+            android:src="@drawable/ic_close_black" />
 
-            <ImageView
-                android:id="@+id/appImageDetail"
-                android:layout_width="wrap_content"
+        <ScrollView
+            android:id="@+id/scv_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/imageView_detail_auto_part_close">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:scaleType="centerCrop" />
+                android:background="@color/white"
+                android:gravity="center">
 
-            <TextView
-                android:id="@+id/appTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="0.8"
-                android:textColor="@color/black_00" />
+                <ImageView
+                    android:id="@+id/iv_auto_part"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_image_detail_product"
+                    android:layout_margin="@dimen/spacing_xlarge"
+                    android:contentDescription="@string/app_name"
+                    android:scaleType="fitCenter"
+                    app:imageUrl="@{viewModel.image}"
+                    tools:src="@drawable/ic_placeholder_detail" />
 
-            <TextView
-                android:id="@+id/appSummary"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:alpha="0.5"
-                android:textColor="@color/black_00" />
+                <TextView
+                    android:id="@+id/tv_auto_part_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_auto_part"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="@dimen/spacing_large"
+                    android:alpha="0.8"
+                    android:gravity="center"
+                    android:text="@{viewModel.fullname}"
+                    android:textColor="@color/black_00"
+                    app:font="@{`bold`}"
+                    tools:text="Auto part Name" />
 
-        </LinearLayout>
-    </ScrollView>
+                <TableLayout
+                    android:id="@+id/tableLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_auto_part_name"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/spacing_large">
+
+                    <TableRow
+                        android:id="@+id/tableRow_category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/spacing_small">
+
+                        <TextView
+                            android:id="@+id/tv_category_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.5"
+                            android:text="@string/copy.category"
+                            android:textColor="@color/black_00"
+                            app:font="@{`bold`}"
+                            tools:text="Category" />
+
+                        <TextView
+                            android:id="@+id/tv_category_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_large"
+                            android:alpha="0.5"
+                            android:gravity="center"
+                            android:text="@{viewModel.category}"
+                            android:textColor="@color/black_00"
+                            app:font="@{`regular`}"
+                            tools:text="Brake" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/spacing_small">
+
+                        <TextView
+                            android:id="@+id/tv_weight_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.5"
+                            android:text="@string/copy.weight"
+                            android:textColor="@color/black_00"
+                            app:font="@{`bold`}"
+                            tools:text="Weight" />
+
+                        <TextView
+                            android:id="@+id/tv_weight_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_large"
+                            android:alpha="0.5"
+                            android:gravity="center"
+                            android:text="@{viewModel.weight}"
+                            android:textColor="@color/black_00"
+                            app:font="@{`regular`}"
+                            tools:text="25 lb" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/spacing_small">
+
+                        <TextView
+                            android:id="@+id/tv_style_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.5"
+                            android:text="@string/copy.style"
+                            android:textColor="@color/black_00"
+                            app:font="@{`bold`}"
+                            tools:text="Style" />
+
+                        <TextView
+                            android:id="@+id/tv_style_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_large"
+                            android:alpha="0.5"
+                            android:gravity="center"
+                            android:text="@{viewModel.style}"
+                            android:textColor="@color/black_00"
+                            app:font="@{`regular`}"
+                            tools:text="N/A" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/tableRow_part_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/spacing_small">
+
+                        <TextView
+                            android:id="@+id/tv_part_type_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.5"
+                            android:text="@string/copy.part_value"
+                            android:textColor="@color/black_00"
+                            app:font="@{`bold`}"
+                            tools:text="Part type" />
+
+                        <TextView
+                            android:id="@+id/tv_part_type_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_large"
+                            android:alpha="0.5"
+                            android:gravity="center"
+                            android:text="@{viewModel.partType}"
+                            android:textColor="@color/black_00"
+                            app:font="@{`regular`}"
+                            tools:text="N/A" />
+                    </TableRow>
+
+                </TableLayout>
+
+                <TextView
+                    android:id="@+id/tv_auto_part_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tableLayout"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="@dimen/spacing_large"
+                    android:alpha="0.5"
+                    android:gravity="center"
+                    android:text="@{viewModel.description}"
+                    android:textColor="@color/black_00"
+                    app:font="@{`regular`}"
+                    tools:text="Description" />
+
+
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
 </layout>

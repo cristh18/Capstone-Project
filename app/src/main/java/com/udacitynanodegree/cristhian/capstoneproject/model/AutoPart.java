@@ -4,6 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.firebase.database.IgnoreExtraProperties;
+import com.udacitynanodegree.cristhian.capstoneproject.R;
+import com.udacitynanodegree.cristhian.capstoneproject.app.IronHideApplication;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.GenericItem;
 
 @IgnoreExtraProperties
@@ -32,6 +34,9 @@ public class AutoPart implements Parcelable, GenericItem {
     }
 
     public String getName() {
+        if (name == null) {
+            name = "";
+        }
         return name;
     }
 
@@ -40,6 +45,9 @@ public class AutoPart implements Parcelable, GenericItem {
     }
 
     public String getFullname() {
+        if (fullname == null) {
+            fullname = "";
+        }
         return fullname;
     }
 
@@ -48,6 +56,9 @@ public class AutoPart implements Parcelable, GenericItem {
     }
 
     public String getCategory() {
+        if (category == null) {
+            category = IronHideApplication.getApp().getString(R.string.copy_does_not_apply);
+        }
         return category;
     }
 
@@ -64,6 +75,9 @@ public class AutoPart implements Parcelable, GenericItem {
     }
 
     public String getWeight() {
+        if (weight == null) {
+            weight = IronHideApplication.getApp().getString(R.string.copy_does_not_apply);
+        }
         return weight;
     }
 
@@ -72,6 +86,9 @@ public class AutoPart implements Parcelable, GenericItem {
     }
 
     public String getDescription() {
+        if (description == null) {
+            description = IronHideApplication.getApp().getString(R.string.copy_does_not_apply);
+        }
         return description;
     }
 
@@ -80,6 +97,9 @@ public class AutoPart implements Parcelable, GenericItem {
     }
 
     public String getStyle() {
+        if (style == null) {
+            style = IronHideApplication.getApp().getString(R.string.copy_does_not_apply);
+        }
         return style;
     }
 
@@ -88,6 +108,9 @@ public class AutoPart implements Parcelable, GenericItem {
     }
 
     public String getPartType() {
+        if (partType == null) {
+            partType = IronHideApplication.getApp().getString(R.string.copy_does_not_apply);
+        }
         return partType;
     }
 
