@@ -36,6 +36,11 @@
             android:screenOrientation="sensorPortrait"
             android:theme="@style/Theme.Opaque" />
 
+        <activity
+            android:name=".ui.activities.GoogleSignInActivity"
+            android:screenOrientation="sensorPortrait"
+            android:theme="@style/Theme.Opaque" />
+
         <provider
             android:name=".persistence.database.IronHideProvider"
             android:authorities="com.udacitynanodegree.cristhian.capstoneproject"

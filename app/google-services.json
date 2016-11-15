@@ -44,6 +44,68 @@
           "status": 2
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245789307159:android:ec78e8e23be7c07c",
+        "android_client_info": {
+          "package_name": "com.udacitynanodegree.cristhian.capstoneproject.develop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "245789307159-g1qs6r5vmn9v6kghdg9qj2rbkvqsci64.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3Sc3TN-KyX9MU9pBcjJLQsk9n85vuiBQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:245789307159:android:fa60ff3737642566",
+        "android_client_info": {
+          "package_name": "com.udacitynanodegree.cristhian.capstoneproject.production"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "245789307159-g1qs6r5vmn9v6kghdg9qj2rbkvqsci64.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3Sc3TN-KyX9MU9pBcjJLQsk9n85vuiBQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
     }
   ],
   "configuration_version": "1"

@@ -14,6 +14,7 @@ import com.udacitynanodegree.cristhian.capstoneproject.interfaces.FragmentView;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.activities.AccountActivity;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.viewmodel.account.RegisterUserViewModel;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets.HeaderMainView;
+import com.udacitynanodegree.cristhian.capstoneproject.utils.KeyboardUtil;
 
 public class RegisterUserFragment extends FragmentView implements
         HeaderMainView.HeaderMainListener {
@@ -56,6 +57,7 @@ public class RegisterUserFragment extends FragmentView implements
 
     @Override
     public void onClickBackHeader() {
+        KeyboardUtil.hideKeyboard(getContext(), registerUserBinding.getRoot());
         close();
     }
 

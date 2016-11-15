@@ -105,4 +105,9 @@ public class AccountActivity extends BaseFragmentActivity implements
     public void dismissProgressDialog() {
         super.dismissProgressDialog();
     }
+
+    public void googleSignIn(){
+        Intent intent = new Intent(this, GoogleSignInActivity.class);
+        startActivity(intent);
+    }
 }

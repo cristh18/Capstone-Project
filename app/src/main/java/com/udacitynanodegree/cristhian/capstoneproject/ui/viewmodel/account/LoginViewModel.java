@@ -43,15 +43,14 @@ public class LoginViewModel {
 
     public void googleSignIn(View view) {
         Toast.makeText(IronHideApplication.getApp().getApplicationContext(), "GOOGLE SIGN IN", Toast.LENGTH_SHORT).show();
+        accountActivity.googleSignIn();
     }
 
     public void forgotPassword(View view) {
-        Toast.makeText(IronHideApplication.getApp().getApplicationContext(), "FORGOT PASSWORD", Toast.LENGTH_SHORT).show();
         accountActivity.showFragment(new RecoverPasswordFragment());
     }
 
     public void signUp(View view) {
-        Toast.makeText(IronHideApplication.getApp().getApplicationContext(), "SIGN UP", Toast.LENGTH_SHORT).show();
         accountActivity.showFragment(new RegisterUserFragment());
     }
 }

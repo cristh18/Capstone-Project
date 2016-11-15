@@ -9,4 +9,15 @@
     <string name="copy.login_sign_up">Sign up</string>
     <string name="copy.sign_in_failed">Sign in failed</string>
     <string name="copy.sign_out">Sign out</string>
+    <string name="copy.forgot_password_label">Forgot password?</string>
+    <string name="copy.forgot_password_message">We just need your registered Email to sent\n you password reset instructions</string>
+    <string name="copy.recover_password_successful">We have sent you instructions to reset your password!</string>
+    <string name="copy.recover_password_failed">Recover password failed</string>
+    <string name="copy.google_sign_in">Google sign in</string>
+
+    <string name="signed_out">Signed Out</string>
+    <string name="firebase_status_fmt">Firebase User: %s</string>
+    <string name="firebase_user_management">Firebase User Management</string>
+    <string name="google_status_fmt">Google User: %s</string>
+    <string name="google_title_text">Google Sign In</string>
 </resources>

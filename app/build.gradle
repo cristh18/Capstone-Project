@@ -29,13 +29,38 @@ android {
         versionName "1.0"
         multiDexEnabled true
     }
+    productFlavors {
+        develop {
+            applicationIdSuffix ".develop"
+            versionName "1.0-develop"
+        }
+        production {
+            applicationIdSuffix ".production"
+            versionName "1.0-production"
+        }
+    }
+    signingConfigs {
+        production {
+            storeFile file('key.jks')
+            storePassword ('@Lelouch#1163')
+            keyAlias "cristh18"
+            keyPassword "@Lelouch#1163"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.production
+            lintOptions {
+                checkReleaseBuilds false
+                abortOnError false
+            }
         }
         debug {
             minifyEnabled false
+            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -64,6 +89,7 @@ dependencies {
     compile 'com.google.firebase:firebase-auth:9.4.0'
     compile 'com.google.firebase:firebase-database:9.4.0'
     compile 'com.google.firebase:firebase-crash:9.4.0'
+    compile 'com.google.android.gms:play-services-auth:9.4.0'
 
     // RxJava adapter for retrofit
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'

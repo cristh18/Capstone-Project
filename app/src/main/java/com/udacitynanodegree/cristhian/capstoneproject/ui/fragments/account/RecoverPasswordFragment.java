@@ -4,21 +4,32 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.udacitynanodegree.cristhian.capstoneproject.R;
 import com.udacitynanodegree.cristhian.capstoneproject.databinding.FragmentRecoverPasswordBinding;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.FragmentView;
+import com.udacitynanodegree.cristhian.capstoneproject.ui.activities.AccountActivity;
+import com.udacitynanodegree.cristhian.capstoneproject.ui.viewmodel.account.RecoverPasswordViewModel;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets.HeaderMainView;
+import com.udacitynanodegree.cristhian.capstoneproject.utils.KeyboardUtil;
 
 public class RecoverPasswordFragment extends FragmentView implements
         HeaderMainView.HeaderMainListener,
-        View.OnClickListener {
+        View.OnClickListener,
+        TextView.OnEditorActionListener,
+        View.OnKeyListener {
 
     private FragmentRecoverPasswordBinding recoverPasswordBinding;
     private RecoverPasswordListener recoverPasswordListener;
+    private RecoverPasswordViewModel recoverPasswordViewModel;
+    private EditText editTextEmail;
 
 
     @Nullable
@@ -30,12 +41,17 @@ public class RecoverPasswordFragment extends FragmentView implements
     }
 
     private void init() {
+        editTextEmail = recoverPasswordBinding.editTextEmail.getEditText();
+        recoverPasswordViewModel = new RecoverPasswordViewModel((AccountActivity) getActivity(), this);
+        recoverPasswordBinding.setViewModel(recoverPasswordViewModel);
         initListeners();
     }
 
 
     private void initListeners() {
         recoverPasswordBinding.headerMainViewRecoverPassword.setHeaderMainListener(this);
+        editTextEmail.setOnEditorActionListener(this);
+        editTextEmail.setOnKeyListener(this);
         recoverPasswordBinding.buttonRecoverPassword.setOnClickListener(this);
     }
 
@@ -57,6 +73,7 @@ public class RecoverPasswordFragment extends FragmentView implements
 
     @Override
     public void onClickBackHeader() {
+        KeyboardUtil.hideKeyboard(getContext(), recoverPasswordBinding.getRoot());
         close();
     }
 
@@ -74,7 +91,37 @@ public class RecoverPasswordFragment extends FragmentView implements
         }
     }
 
+    @Override
+    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+        if (actionId == EditorInfo.IME_ACTION_NEXT) {
+            executeRecoverPassword();
+            return true;
+        }
+        return false;
+    }
+
+    private void executeRecoverPassword() {
+        recoverPasswordViewModel.recoverPassword(editTextEmail);
+        KeyboardUtil.hideKeyboard(getContext(), recoverPasswordBinding.getRoot());
+    }
+
+    @Override
+    public boolean onKey(View v, int keyCode, KeyEvent event) {
+        if (keyCode == EditorInfo.IME_ACTION_SEARCH ||
+                keyCode == EditorInfo.IME_ACTION_DONE ||
+                event.getAction() == KeyEvent.ACTION_DOWN &&
+                        event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+            executeRecoverPassword();
+            return true;
+        }
+        return false;
+    }
+
     public interface RecoverPasswordListener {
         void onRecoverPassword();
+    }
+
+    public FragmentRecoverPasswordBinding getRecoverPasswordBinding() {
+        return recoverPasswordBinding;
     }
 }
