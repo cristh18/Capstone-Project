@@ -19,11 +19,12 @@ public class Vehicle implements GenericItem, Parcelable {
     private String description;
     private String image;
     private List<AutoPart> autoParts;
+    private String url;
 
     public Vehicle() {
     }
 
-    public Vehicle(String year, String make, String model, String submodel, String engine, String description, String image, List<AutoPart> autoParts) {
+    public Vehicle(String year, String make, String model, String submodel, String engine, String description, String image, List<AutoPart> autoParts, String url) {
         this.year = year;
         this.make = make;
         this.model = model;
@@ -32,6 +33,7 @@ public class Vehicle implements GenericItem, Parcelable {
         this.description = description;
         this.image = image;
         this.autoParts = autoParts;
+        this.url = url;
     }
 
     public String getYear() {
@@ -98,6 +100,17 @@ public class Vehicle implements GenericItem, Parcelable {
         this.autoParts = autoParts;
     }
 
+    public String getUrl() {
+        if (url == null) {
+            url = "";
+        }
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     @Override
     public String toString() {
         return getMake().concat(" ").concat(getModel()).concat(" ").concat(getSubmodel()).concat(" ").concat(getYear());
@@ -119,7 +132,9 @@ public class Vehicle implements GenericItem, Parcelable {
         if (description != null ? !description.equals(vehicle.description) : vehicle.description != null)
             return false;
         if (image != null ? !image.equals(vehicle.image) : vehicle.image != null) return false;
-        return autoParts != null ? autoParts.equals(vehicle.autoParts) : vehicle.autoParts == null;
+        if (autoParts != null ? !autoParts.equals(vehicle.autoParts) : vehicle.autoParts != null)
+            return false;
+        return url != null ? url.equals(vehicle.url) : vehicle.url == null;
 
     }
 
@@ -133,6 +148,7 @@ public class Vehicle implements GenericItem, Parcelable {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (image != null ? image.hashCode() : 0);
         result = 31 * result + (autoParts != null ? autoParts.hashCode() : 0);
+        result = 31 * result + (url != null ? url.hashCode() : 0);
         return result;
     }
 
@@ -152,7 +168,8 @@ public class Vehicle implements GenericItem, Parcelable {
                     source.readString(),
                     source.readString(),
                     source.readString(),
-                    source.readArrayList(Vehicle.class.getClassLoader()));
+                    source.readArrayList(Vehicle.class.getClassLoader()),
+                    source.readString());
         }
 
         public Vehicle[] newArray(int size) {
@@ -175,5 +192,6 @@ public class Vehicle implements GenericItem, Parcelable {
         dest.writeString(description);
         dest.writeString(image);
         dest.writeList(autoParts);
+        dest.writeString(url);
     }
 }

@@ -101,7 +101,7 @@ public class VehicleDescriptionFragment extends FragmentView
         String TEXT_PLAIN = "text/plain";
         startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
                 .setType(TEXT_PLAIN)
-                .setText("Some sample text")
+                .setText(vehicle.getUrl())
                 .getIntent(), getString(R.string.action_share)));
     }
 }

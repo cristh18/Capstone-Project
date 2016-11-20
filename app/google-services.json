@@ -15,14 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "245789307159-mv707eh9qhp4baijttl72dvirmlgndm5.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.udacitynanodegree.cristhian.capstoneproject",
-            "certificate_hash": "D793653FE3F7CC779929FEF518D3E0AEDA141A74"
-          }
-        },
-        {
           "client_id": "245789307159-g1qs6r5vmn9v6kghdg9qj2rbkvqsci64.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -54,6 +46,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "245789307159-9ag59vtv0pss1kn1g1gjfkrpl7kjshvu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.udacitynanodegree.cristhian.capstoneproject.develop",
+            "certificate_hash": "DC2CE45A4E33EA55E43FA548B8C27C239E703A96"
+          }
+        },
+        {
           "client_id": "245789307159-g1qs6r5vmn9v6kghdg9qj2rbkvqsci64.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -68,8 +68,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "245789307159-g1qs6r5vmn9v6kghdg9qj2rbkvqsci64.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
@@ -85,6 +90,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "245789307159-oi53oqc6bv634ns7tuuk5cdeqfe619hf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.udacitynanodegree.cristhian.capstoneproject.production",
+            "certificate_hash": "DC2CE45A4E33EA55E43FA548B8C27C239E703A96"
+          }
+        },
+        {
           "client_id": "245789307159-g1qs6r5vmn9v6kghdg9qj2rbkvqsci64.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -99,8 +112,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "245789307159-g1qs6r5vmn9v6kghdg9qj2rbkvqsci64.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
