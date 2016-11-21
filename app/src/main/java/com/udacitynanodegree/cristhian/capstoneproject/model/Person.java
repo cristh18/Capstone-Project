@@ -2,11 +2,13 @@ package com.udacitynanodegree.cristhian.capstoneproject.model;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @IgnoreExtraProperties
 public class Person {
 
+    private String uId;
     private String email;
     private String lastName;
     private String name;
@@ -15,11 +17,20 @@ public class Person {
     public Person() {
     }
 
-    public Person(String email, String lastName, String name, List<Vehicle> vehicles) {
+    public Person(String uId, String email, String lastName, String name, List<Vehicle> vehicles) {
+        this.uId = uId;
         this.email = email;
         this.lastName = lastName;
         this.name = name;
         this.vehicles = vehicles;
+    }
+
+    public String getuId() {
+        return uId;
+    }
+
+    public void setuId(String uId) {
+        this.uId = uId;
     }
 
     public String getEmail() {
@@ -47,6 +58,9 @@ public class Person {
     }
 
     public List<Vehicle> getVehicles() {
+        if (vehicles == null) {
+            vehicles = new ArrayList<>();
+        }
         return vehicles;
     }
 
@@ -71,6 +85,7 @@ public class Person {
 
         Person person = (Person) o;
 
+        if (uId != null ? !uId.equals(person.uId) : person.uId != null) return false;
         if (email != null ? !email.equals(person.email) : person.email != null) return false;
         if (lastName != null ? !lastName.equals(person.lastName) : person.lastName != null)
             return false;
@@ -81,7 +96,8 @@ public class Person {
 
     @Override
     public int hashCode() {
-        int result = email != null ? email.hashCode() : 0;
+        int result = uId != null ? uId.hashCode() : 0;
+        result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (vehicles != null ? vehicles.hashCode() : 0);

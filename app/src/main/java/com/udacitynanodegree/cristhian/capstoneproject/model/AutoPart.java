@@ -3,10 +3,14 @@ package com.udacitynanodegree.cristhian.capstoneproject.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 import com.udacitynanodegree.cristhian.capstoneproject.R;
 import com.udacitynanodegree.cristhian.capstoneproject.app.IronHideApplication;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.GenericItem;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @IgnoreExtraProperties
 public class AutoPart implements Parcelable, GenericItem {
@@ -206,5 +210,19 @@ public class AutoPart implements Parcelable, GenericItem {
     @Override
     public int getType() {
         return 0;
+    }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("name", name);
+        result.put("fullname", fullname);
+        result.put("category", category);
+        result.put("image", image);
+        result.put("weight", weight);
+        result.put("description", description);
+        result.put("style", style);
+        result.put("partType", partType);
+        return result;
     }
 }

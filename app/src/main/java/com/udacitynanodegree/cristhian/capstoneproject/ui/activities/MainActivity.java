@@ -11,11 +11,11 @@ import com.udacitynanodegree.cristhian.capstoneproject.app.IronHideApplication;
 import com.udacitynanodegree.cristhian.capstoneproject.databinding.ActivityMainBinding;
 import com.udacitynanodegree.cristhian.capstoneproject.model.Vehicle;
 import com.udacitynanodegree.cristhian.capstoneproject.persistence.database.IronHideDBHelper;
-import com.udacitynanodegree.cristhian.capstoneproject.persistence.database.IronHideProvider;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.vehicle.RegisterVehicleFragment;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.fragments.vehicle.VehicleListFragment;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.viewmodel.MainViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BaseFragmentActivity implements
@@ -79,8 +79,10 @@ public class MainActivity extends BaseFragmentActivity implements
         showMyVehicles();
     }
 
+
     public void showMyVehicles() {
-        VehicleListFragment vehicleListFragment = VehicleListFragment.newInstance(stockVehicles);
+        //VehicleListFragment vehicleListFragment = VehicleListFragment.newInstance(stockVehicles);
+        VehicleListFragment vehicleListFragment = VehicleListFragment.newInstance(new ArrayList<>());
         addFragment(vehicleListFragment);
     }
 
@@ -108,7 +110,7 @@ public class MainActivity extends BaseFragmentActivity implements
         this.stockVehicles = stockVehicles;
     }
 
-    public void showVehicleDescription(Vehicle vehicle){
+    public void showVehicleDescription(Vehicle vehicle) {
         Intent intent = new Intent(this, VehicleDetailActivity.class);
         intent.putExtra("ARG_VEHICLE", vehicle);
         startActivity(intent);

@@ -3,10 +3,14 @@ package com.udacitynanodegree.cristhian.capstoneproject.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.GenericItem;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @IgnoreExtraProperties
 public class Vehicle implements GenericItem, Parcelable {
@@ -37,6 +41,9 @@ public class Vehicle implements GenericItem, Parcelable {
     }
 
     public String getYear() {
+        if (year == null) {
+            year = "";
+        }
         return year;
     }
 
@@ -45,6 +52,9 @@ public class Vehicle implements GenericItem, Parcelable {
     }
 
     public String getMake() {
+        if (make == null) {
+            make = "";
+        }
         return make;
     }
 
@@ -53,6 +63,9 @@ public class Vehicle implements GenericItem, Parcelable {
     }
 
     public String getModel() {
+        if (model == null) {
+            model = "";
+        }
         return model;
     }
 
@@ -61,6 +74,9 @@ public class Vehicle implements GenericItem, Parcelable {
     }
 
     public String getSubmodel() {
+        if (submodel == null) {
+            submodel = "";
+        }
         return submodel;
     }
 
@@ -69,6 +85,9 @@ public class Vehicle implements GenericItem, Parcelable {
     }
 
     public String getEngine() {
+        if (engine == null) {
+            engine = "";
+        }
         return engine;
     }
 
@@ -77,6 +96,9 @@ public class Vehicle implements GenericItem, Parcelable {
     }
 
     public String getDescription() {
+        if (description == null) {
+            description = "";
+        }
         return description;
     }
 
@@ -85,6 +107,9 @@ public class Vehicle implements GenericItem, Parcelable {
     }
 
     public String getImage() {
+        if (image == null) {
+            image = "";
+        }
         return image;
     }
 
@@ -93,6 +118,9 @@ public class Vehicle implements GenericItem, Parcelable {
     }
 
     public List<AutoPart> getAutoParts() {
+        if (autoParts == null) {
+            autoParts = new ArrayList<>();
+        }
         return autoParts;
     }
 
@@ -193,5 +221,20 @@ public class Vehicle implements GenericItem, Parcelable {
         dest.writeString(image);
         dest.writeList(autoParts);
         dest.writeString(url);
+    }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("year", year);
+        result.put("make", make);
+        result.put("model", model);
+        result.put("submodel", submodel);
+        result.put("engine", engine);
+        result.put("description", description);
+        result.put("image", image);
+        result.put("autoParts", autoParts);
+        result.put("url", url);
+        return result;
     }
 }

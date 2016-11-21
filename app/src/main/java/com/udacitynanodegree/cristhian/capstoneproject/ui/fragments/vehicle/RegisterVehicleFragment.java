@@ -16,6 +16,8 @@ import com.udacitynanodegree.cristhian.capstoneproject.R;
 import com.udacitynanodegree.cristhian.capstoneproject.databinding.FragmentRegisterVehicleBinding;
 import com.udacitynanodegree.cristhian.capstoneproject.interfaces.FragmentView;
 import com.udacitynanodegree.cristhian.capstoneproject.model.Vehicle;
+import com.udacitynanodegree.cristhian.capstoneproject.ui.activities.MainActivity;
+import com.udacitynanodegree.cristhian.capstoneproject.ui.viewmodel.vehicle.RegisterVehicleViewModel;
 import com.udacitynanodegree.cristhian.capstoneproject.ui.views.widgets.HeaderMainView;
 
 import java.util.ArrayList;
@@ -23,11 +25,11 @@ import java.util.List;
 
 public class RegisterVehicleFragment extends FragmentView implements
         HeaderMainView.HeaderMainListener,
-        AdapterView.OnItemSelectedListener,
-        View.OnClickListener{
+        AdapterView.OnItemSelectedListener {
 
     private static final String ARG_VEHICLES = "ARG_VEHICLES";
     private FragmentRegisterVehicleBinding registerVehicleBinding;
+    private RegisterVehicleViewModel registerVehicleViewModel;
     private RegisterVehicleListener registerVehicleListener;
     private List<Vehicle> stockVehicles;
 
@@ -50,6 +52,8 @@ public class RegisterVehicleFragment extends FragmentView implements
     }
 
     private void init() {
+        registerVehicleViewModel = new RegisterVehicleViewModel((MainActivity) getActivity(), this);
+        registerVehicleBinding.setViewModel(registerVehicleViewModel);
         initListeners();
     }
 
@@ -86,7 +90,6 @@ public class RegisterVehicleFragment extends FragmentView implements
 
     private void initListeners() {
         registerVehicleBinding.headerMainViewRegisterVehicle.setHeaderMainListener(this);
-        registerVehicleBinding.buttonRegisterVehicle.setOnClickListener(this);
         registerVehicleBinding.spinnerVehicleMake.setOnItemSelectedListener(this);
     }
 
@@ -117,16 +120,6 @@ public class RegisterVehicleFragment extends FragmentView implements
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.button_register_vehicle:
-                registerVehicleListener.onRegisterVehicle();
-//                close();
-                break;
-        }
-    }
-
-    @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (position != 0) {
             setFormValues(stockVehicles.get(position - 1));
@@ -143,6 +136,10 @@ public class RegisterVehicleFragment extends FragmentView implements
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    public FragmentRegisterVehicleBinding getRegisterVehicleBinding() {
+        return registerVehicleBinding;
     }
 
     public interface RegisterVehicleListener {
