@@ -75,6 +75,7 @@ public class RegisterVehicleViewModel implements ChildEventListener {
                         .concat(String.valueOf(autoParts.get(i).hashCode() + i)), autoPartValues);
                 IronHideApplication.getFirebaseDatabase().getReference().updateChildren(childUpdates);
             }
+            registerVehicleFragment.getRegisterVehicleListener().onRegisterVehicle();
         }
 
     }
@@ -122,6 +123,8 @@ public class RegisterVehicleViewModel implements ChildEventListener {
         if (!autoParts.values().isEmpty()) {
 //            vehicle.setAutoParts(new ArrayList<>(autoParts.values()));
             saveAutoParts(new ArrayList<>(autoParts.values()));
+        } else {
+            registerVehicleFragment.getRegisterVehicleListener().onRegisterVehicle();
         }
     }
 

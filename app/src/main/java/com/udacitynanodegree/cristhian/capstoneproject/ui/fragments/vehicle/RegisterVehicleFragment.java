@@ -142,6 +142,10 @@ public class RegisterVehicleFragment extends FragmentView implements
         return registerVehicleBinding;
     }
 
+    public RegisterVehicleListener getRegisterVehicleListener() {
+        return registerVehicleListener;
+    }
+
     public interface RegisterVehicleListener {
         void onRegisterVehicle();
     }

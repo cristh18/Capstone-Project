@@ -27,6 +27,7 @@ public class MainActivity extends BaseFragmentActivity implements
     private final int SPLASH_REQUEST_CODE = 0;
     private final int INTRO_REQUEST_CODE = 1;
     private List<Vehicle> stockVehicles;
+    private List<Vehicle> myVehicles;
     private MainViewModel mainViewModel;
 
 
@@ -66,6 +67,7 @@ public class MainActivity extends BaseFragmentActivity implements
     public void signOut() {
         IronHideApplication.getFirebaseAuth().signOut();
         stockVehicles = null;
+        myVehicles = null;
         goToAccountActivity();
     }
 
@@ -82,6 +84,7 @@ public class MainActivity extends BaseFragmentActivity implements
 
     public void showMyVehicles() {
         //VehicleListFragment vehicleListFragment = VehicleListFragment.newInstance(stockVehicles);
+        mainViewModel.getMyVehicles();
         VehicleListFragment vehicleListFragment = VehicleListFragment.newInstance(new ArrayList<>());
         addFragment(vehicleListFragment);
     }
@@ -103,11 +106,25 @@ public class MainActivity extends BaseFragmentActivity implements
     }
 
     public List<Vehicle> getStockVehicles() {
+        if (stockVehicles == null) {
+            stockVehicles = new ArrayList<>();
+        }
         return stockVehicles;
     }
 
     public void setStockVehicles(List<Vehicle> stockVehicles) {
         this.stockVehicles = stockVehicles;
+    }
+
+    public List<Vehicle> getMyVehicles() {
+        if (myVehicles == null) {
+            myVehicles = new ArrayList<>();
+        }
+        return myVehicles;
+    }
+
+    public void setMyVehicles(List<Vehicle> myVehicles) {
+        this.myVehicles = myVehicles;
     }
 
     public void showVehicleDescription(Vehicle vehicle) {
