@@ -49,9 +49,11 @@ public class NotificationUtils extends ContextWrapper {
 
     public NotificationCompat.Builder getNotification(RemoteMessage.Notification notification, PendingIntent pendingIntent) {
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        int color = 0x008000;
         NotificationCompat.Builder androidNotification;
         androidNotification = getBuilderByAndroidVersion();
         androidNotification.setSmallIcon(android.R.drawable.stat_notify_more)
+                .setColor(color)
                 .setContentTitle(notification.getTitle())
                 .setContentText(notification.getBody())
                 .setAutoCancel(true)
